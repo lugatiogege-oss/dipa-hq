@@ -1,0 +1,437 @@
+{
+  "base": "http://127.0.0.1:8126",
+  "tag": "after",
+  "startedAt": "2026-11-15T20:56:42.989Z",
+  "desktop": {
+    "viewport": "1440x900",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "loadMs": 4222,
+    "ready": true,
+    "clock": {
+      "t1": "03:56:53 WIB",
+      "t2": "03:56:56 WIB",
+      "ticking": true
+    },
+    "fps": {
+      "current": 2.5,
+      "avg": 2,
+      "min": 1,
+      "samples": 11
+    },
+    "perf": {
+      "calls": 279,
+      "triangles": 38120,
+      "geometries": 167,
+      "textures": 30,
+      "programs": 22
+    },
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "actTags": [
+        "IDLE",
+        "THINKING",
+        "IDLE",
+        "WORKING",
+        "IDLE",
+        "WORKING",
+        "THINKING"
+      ],
+      "oldNamesPresent": false,
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true,
+      "ceoCard": true,
+      "divisions": "Divisions Belum diatur EXECUTIVE DFNX PRIME SUPRE"
+    },
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "roofCheck": {
+      "y": 4.53
+    },
+    "panels": {
+      "before": {
+        "left": true,
+        "right": true
+      },
+      "leftCloseClicked": true,
+      "afterLeftClose": {
+        "left": false,
+        "right": true
+      },
+      "leftOpenClicked": true,
+      "afterLeftOpen": {
+        "left": true,
+        "right": true
+      },
+      "rightCloseClicked": true,
+      "afterRightClose": {
+        "left": true,
+        "right": false
+      },
+      "rightOpenClicked": true,
+      "afterRightOpen": {
+        "left": true,
+        "right": true
+      }
+    },
+    "nav": {
+      "start": {
+        "nav": true,
+        "openNav": false
+      },
+      "afterCollapse": {
+        "nav": false,
+        "openNav": true
+      },
+      "afterReopen": {
+        "nav": true,
+        "openNav": false
+      }
+    },
+    "camera": {
+      "default": {
+        "pos": [
+          22,
+          17,
+          26
+        ],
+        "target": [
+          0,
+          4.1,
+          0
+        ]
+      },
+      "floor1": {
+        "pos": [
+          16.01,
+          3.03,
+          22.01
+        ],
+        "target": [
+          0,
+          2.01,
+          0
+        ]
+      },
+      "floor2": {
+        "pos": [
+          16,
+          6.84,
+          22
+        ],
+        "target": [
+          0,
+          5.99,
+          0
+        ]
+      },
+      "ceo": {
+        "pos": [
+          -13.97,
+          8,
+          14.01
+        ],
+        "target": [
+          -5.99,
+          5.8,
+          -3.5
+        ]
+      },
+      "entrance": {
+        "pos": [
+          7.98,
+          2.44,
+          25.99
+        ],
+        "target": [
+          -0.01,
+          1.8,
+          7.49
+        ]
+      },
+      "top": {
+        "pos": [
+          15.99,
+          19.99,
+          16.01
+        ],
+        "target": [
+          0,
+          4.2,
+          0
+        ]
+      }
+    },
+    "tap": {
+      "agent1": {
+        "x": -7,
+        "z": -3.65,
+        "activity": "WORKING"
+      },
+      "screen": {
+        "x": 634,
+        "y": 442.7,
+        "behind": false
+      },
+      "toast": {
+        "visible": true,
+        "text": "Agent 1 · Research Lab · WORKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    },
+    "signTextures": [
+      {
+        "w": 1024,
+        "h": 224,
+        "anisotropy": 8
+      },
+      {
+        "w": 1024,
+        "h": 224,
+        "anisotropy": 8
+      },
+      {
+        "w": 1024,
+        "h": 224,
+        "anisotropy": 8
+      },
+      {
+        "w": 1024,
+        "h": 224,
+        "anisotropy": 8
+      },
+      {
+        "w": 1024,
+        "h": 224,
+        "anisotropy": 8
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "loadMs": 1861,
+    "ready": true,
+    "clock": {
+      "t1": "03:59:15 WIB",
+      "t2": "03:59:18 WIB",
+      "ticking": true
+    },
+    "fps": {
+      "current": 9.9,
+      "avg": 10.2,
+      "min": 3.5,
+      "samples": 12
+    },
+    "perf": {
+      "calls": 238,
+      "triangles": 35022,
+      "geometries": 139,
+      "textures": 26,
+      "programs": 10
+    },
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "actTags": [
+        "IDLE",
+        "WORKING",
+        "IDLE",
+        "WORKING",
+        "WORKING",
+        "WORKING",
+        "WORKING"
+      ],
+      "oldNamesPresent": false,
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true,
+      "ceoCard": true,
+      "divisions": "Divisions Belum diatur EXECUTIVE DFNX PRIME SUPRE"
+    },
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "roofCheck": {
+      "y": 4.53
+    },
+    "panels": {
+      "before": {
+        "left": true,
+        "right": true
+      },
+      "leftCloseClicked": true,
+      "afterLeftClose": {
+        "left": false,
+        "right": true
+      },
+      "leftOpenClicked": true,
+      "afterLeftOpen": {
+        "left": true,
+        "right": true
+      },
+      "rightCloseClicked": true,
+      "afterRightClose": {
+        "left": true,
+        "right": false
+      },
+      "rightOpenClicked": true,
+      "afterRightOpen": {
+        "left": true,
+        "right": true
+      }
+    },
+    "nav": {
+      "start": {
+        "nav": true,
+        "openNav": false
+      },
+      "afterCollapse": {
+        "nav": false,
+        "openNav": true
+      },
+      "afterReopen": {
+        "nav": true,
+        "openNav": false
+      }
+    },
+    "camera": {
+      "default": {
+        "pos": [
+          22,
+          17,
+          26
+        ],
+        "target": [
+          0,
+          4.1,
+          0
+        ]
+      },
+      "floor1": {
+        "pos": [
+          16.02,
+          3.04,
+          22.01
+        ],
+        "target": [
+          0,
+          2.01,
+          0
+        ]
+      },
+      "floor2": {
+        "pos": [
+          16,
+          6.81,
+          22
+        ],
+        "target": [
+          0,
+          5.95,
+          0
+        ]
+      },
+      "ceo": {
+        "pos": [
+          -13.96,
+          8,
+          14.01
+        ],
+        "target": [
+          -5.99,
+          5.8,
+          -3.5
+        ]
+      },
+      "entrance": {
+        "pos": [
+          7.97,
+          2.44,
+          25.98
+        ],
+        "target": [
+          -0.01,
+          1.81,
+          7.48
+        ]
+      },
+      "top": {
+        "pos": [
+          15.99,
+          19.97,
+          16.02
+        ],
+        "target": [
+          0,
+          4.2,
+          0.01
+        ]
+      }
+    },
+    "tap": {
+      "agent1": {
+        "x": -7,
+        "z": -3.65,
+        "activity": "WORKING"
+      },
+      "screen": {
+        "x": 114.4,
+        "y": 415.1,
+        "behind": false
+      },
+      "toast": {
+        "visible": true,
+        "text": "Agent 1 · Research Lab · WORKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    }
+  },
+  "finishedAt": "2026-11-15T21:00:40.174Z"
+}

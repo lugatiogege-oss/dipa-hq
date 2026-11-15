@@ -27,8 +27,11 @@ export const M = {
   // scene render into a transmission target EVERY frame — the single
   // biggest GPU cost on a phone. Plain transparent standard material
   // keeps the glass look without the extra pass.
-  glass: std(0x7bdcff, 0.16, 0.08, { transparent: true, opacity: 0.16, side: THREE.DoubleSide }),
-  glassDark: std(0x2a7090, 0.22, 0.15, { transparent: true, opacity: 0.32, side: THREE.DoubleSide }),
+  // Audit 2026-11-16 (Phase 3): glass 0.16 -> 0.22, glassDark 0.32 -> 0.36.
+  // The facade barely read as glass from outside; still mostly transparent
+  // so the interior stays visible. No transmission (perf fix stands).
+  glass: std(0x7bdcff, 0.16, 0.08, { transparent: true, opacity: 0.22, side: THREE.DoubleSide }),
+  glassDark: std(0x2a7090, 0.22, 0.15, { transparent: true, opacity: 0.36, side: THREE.DoubleSide }),
   glassFloor: std(0x9fe8ff, 0.08, 0.1, { transparent: true, opacity: 0.28, side: THREE.DoubleSide }),
   water: new THREE.MeshStandardMaterial({
     color: 0x2fb9e8, roughness: 0.08, metalness: 0.1,
@@ -152,16 +155,38 @@ export function glowLight(parent, color, intensity, x, y, z, dist = 9) {
 
 // Canvas-texture room sign (plane, double-sided). Placed carefully so beams
 // do not clip it — Phase 1 found v3's DIPA NEXUS sign clipped by the roof beam.
+//
+// Typography fix (audit 2026-11-16 — owner reports blurry/pixelated text):
+// the old 600x130 canvas had three real defects, all fixed here:
+//  1. No anisotropy (default 1): at the oblique angles the signs are viewed
+//     from, mipmaps blur the text badly. anisotropy 8 is the main cure — the
+//     driver clamps it to its own maximum, so it is safe on any GPU.
+//  2. No text auto-fit: long names ('DFNX PRIME · EXECUTIVE OFFICE',
+//     'GLASS VIEWING · OPERATIONS BELOW') measured ~645-760px at bold 42px
+//     but the inner width was only 592px — they CLIPPED at the canvas edge.
+//     The font now starts at bold 84px and shrinks until the text fits.
+//  3. Low resolution: 600x130 -> 1024x224 (≈4.57:1, same aspect as before,
+//     so the look does not change). Cost: ~1.2 MB per sign texture with
+//     mipmaps (was ~0.4 MB) — 15 signs ≈ 18 MB total (was ≈ 6 MB).
+//     That is the measured price of sharp text; it is reported, not hidden.
 export function sign(parent, text, x, y, z, color = '#64e2ff', w = 3.3, h = 0.68, faceFront = false) {
   const c = document.createElement('canvas');
-  c.width = 600; c.height = 130;
+  c.width = 1024; c.height = 224;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = 'rgba(4,17,31,.94)'; ctx.fillRect(0, 0, 600, 130);
-  ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.strokeRect(4, 4, 592, 122);
-  ctx.fillStyle = color; ctx.font = 'bold 42px Arial'; ctx.textAlign = 'center';
-  ctx.fillText(text, 300, 82);
+  ctx.fillStyle = 'rgba(4,17,31,.94)'; ctx.fillRect(0, 0, 1024, 224);
+  ctx.strokeStyle = color; ctx.lineWidth = 8; ctx.strokeRect(6, 6, 1012, 212);
+  ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  let size = 84;
+  ctx.font = `bold ${size}px Arial`;
+  const maxW = 1024 - 2 * 28;
+  while (size > 28 && ctx.measureText(text).width > maxW) {
+    size -= 2;
+    ctx.font = `bold ${size}px Arial`;
+  }
+  ctx.fillText(text, 512, 114);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
   const o = new THREE.Mesh(
     new THREE.PlaneGeometry(w, h),
     new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide }),
@@ -176,13 +201,27 @@ export function sign(parent, text, x, y, z, color = '#64e2ff', w = 3.3, h = 0.68
 }
 
 // Floating name tag above a character (canvas sprite, like v1's textSprite).
+//
+// Typography fix (audit 2026-11-16): same treatment as sign() — 512x128 ->
+// 768x192, anisotropy 8 (oblique blur cure), SRGB colorspace (was missing,
+// so tag colours rendered slightly off), and auto-fit so a long name can
+// never clip. Cost: ~0.8 MB per tag with mipmaps (was ~0.35 MB).
 export function nameTag(text, color = '#e3f1ff', scale = 2.2) {
   const c = document.createElement('canvas');
-  c.width = 512; c.height = 128;
+  c.width = 768; c.height = 192;
   const ctx = c.getContext('2d');
-  ctx.font = '800 44px Arial'; ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText(text, 256, 64);
+  let size = 66;
+  ctx.font = `800 ${size}px Arial`;
+  const maxW = 768 - 2 * 24;
+  while (size > 24 && ctx.measureText(text).width > maxW) {
+    size -= 2;
+    ctx.font = `800 ${size}px Arial`;
+  }
+  ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(text, 384, 98);
   const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
   const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
   s.scale.set(scale, scale / 4, 1);
   return s;

@@ -1,0 +1,304 @@
+{
+  "desktop": {
+    "info": {
+      "dpr": 1,
+      "innerWidth": 1440,
+      "workers": 7,
+      "quality": {
+        "level": "PERFORMANCE",
+        "pixelRatio": 1,
+        "shadows": false,
+        "reducedScale": false,
+        "auto": true
+      },
+      "perf": {
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 14
+      },
+      "fps": {
+        "current": 1.6,
+        "avg": 1.3,
+        "min": 0.8,
+        "samples": 3
+      }
+    },
+    "samples": [
+      {
+        "t": 1,
+        "fps": 1,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 2,
+        "fps": 2.5,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 3,
+        "fps": 2,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 4,
+        "fps": 2,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 5,
+        "fps": 2.4,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 6,
+        "fps": 2.7,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 7,
+        "fps": 2.7,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 8,
+        "fps": 2.1,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 9,
+        "fps": 3.3,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 10,
+        "fps": 2.3,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 11,
+        "fps": 2.5,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      },
+      {
+        "t": 12,
+        "fps": 2.7,
+        "calls": 279,
+        "triangles": 38048,
+        "geometries": 167,
+        "textures": 30,
+        "programs": 22
+      }
+    ],
+    "agg": {
+      "current": 2.7,
+      "avg": 2.1,
+      "min": 0.8,
+      "samples": 14
+    },
+    "endQuality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "errors": []
+  },
+  "mobile": {
+    "info": {
+      "dpr": 1,
+      "innerWidth": 390,
+      "workers": 7,
+      "quality": {
+        "level": "PERFORMANCE",
+        "pixelRatio": 0.85,
+        "shadows": false,
+        "reducedScale": true,
+        "auto": true
+      },
+      "perf": {
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      "fps": {
+        "current": 10.8,
+        "avg": 6.6,
+        "min": 1.8,
+        "samples": 4
+      }
+    },
+    "samples": [
+      {
+        "t": 1,
+        "fps": 11,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 2,
+        "fps": 12.8,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 3,
+        "fps": 11.9,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 4,
+        "fps": 11.1,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 5,
+        "fps": 12,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 6,
+        "fps": 12.8,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 7,
+        "fps": 12.8,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 8,
+        "fps": 12.2,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 9,
+        "fps": 13.8,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 10,
+        "fps": 12.7,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 11,
+        "fps": 12.2,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      },
+      {
+        "t": 12,
+        "fps": 12.9,
+        "calls": 238,
+        "triangles": 35094,
+        "geometries": 139,
+        "textures": 26,
+        "programs": 10
+      }
+    ],
+    "agg": {
+      "current": 12.9,
+      "avg": 10.9,
+      "min": 1.8,
+      "samples": 16
+    },
+    "endQuality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "errors": []
+  }
+}

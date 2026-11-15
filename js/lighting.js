@@ -61,8 +61,11 @@ export function createDayNight(ctx) {
     moonDisc.position.set(Math.cos(mang) * 55, 8 + night * 30, -20);
     moonDisc.visible = night > 0.4;
 
-    hemi.intensity = 0.35 + day * 1.3;
-    ambient.intensity = 0.15 + day * 0.42;
+    // Audit 2026-11-16 (Phase 3): night floor lifted slightly (hemi 0.35->0.5,
+    // ambient 0.15->0.22 at night) — the open-top interior read too dark from
+    // above at night. Day values are UNCHANGED (hemi 1.65, ambient 0.57).
+    hemi.intensity = 0.5 + day * 1.15;
+    ambient.intensity = 0.22 + day * 0.35;
     // interior lights: on at night, reduced in daylight (monitors stay lit)
     for (const l of interiorLights) l.intensity = 0.25 + night * 1.1;
 

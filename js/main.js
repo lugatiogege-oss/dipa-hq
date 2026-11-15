@@ -202,6 +202,15 @@ if (app) {
     // Picking diagnostics: project a world point to screen pixels, and
     // report how many meshes are raycast-pickable.
     pickCount: () => app.pickables.length,
+    // Audit 2026-11-16: position the camera directly (typography
+    // before/after shots). Same pattern as the other debug helpers —
+    // test/verification only, no user-facing function.
+    setCamera: (pos, target) => {
+      app.sceneCtx.camera.position.set(pos[0], pos[1], pos[2]);
+      app.controls.target.set(target[0], target[1], target[2]);
+      app.controls.update();
+      return true;
+    },
     cameraPos: () => ({
       pos: app.sceneCtx.camera.position.toArray().map(n => +n.toFixed(2)),
       target: app.controls.target.toArray().map(n => +n.toFixed(2)),

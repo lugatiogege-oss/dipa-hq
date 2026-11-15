@@ -28,6 +28,54 @@ const sphGeo = (r, w = 16, h = 12) => geo(`sph:${r}:${w}:${h}`, () => new THREE.
 const boxGeo = (w, h, d) => geo(`box:${w}:${h}:${d}`, () => new THREE.BoxGeometry(w, h, d));
 const cylGeo = (rt, rb, h, n = 10) => geo(`cyl:${rt}:${rb}:${h}:${n}`, () => new THREE.CylinderGeometry(rt, rb, h, n));
 
+// Audit 2026-11-16 (Phase 4): merge same-material parts that never move
+// relative to each other — 3 fewer draw calls per rig, 24 total across the
+// 8 characters, zero visual change. The eyes (both M.black, both children
+// of the head group) become one mesh; each shin capsule + foot box (both
+// M.deep, both children of the knee group) become one mesh. Geometries are
+// cloned from the shared cache, baked with their local transforms, then
+// merged. All merged geometries are indexed with position/normal/uv.
+// (Animation drives the joint GROUPS, never these meshes, so merging is safe;
+// pickables still work — merged parts are still meshes under the actor group.)
+const _m4b = new THREE.Matrix4(), _q0 = new THREE.Quaternion();
+function xform(geoObj, x, y, z, sx = 1, sy = 1, sz = 1) {
+  const g = geoObj.clone();
+  _m4b.compose(new THREE.Vector3(x, y, z), _q0.identity(), new THREE.Vector3(sx, sy, sz));
+  g.applyMatrix4(_m4b);
+  return g;
+}
+function mergeGeos(geos) {
+  let vCount = 0, iCount = 0;
+  for (const g of geos) { vCount += g.attributes.position.count; iCount += g.index.count; }
+  const pos = new Float32Array(vCount * 3), nor = new Float32Array(vCount * 3), uv = new Float32Array(vCount * 2);
+  const idx = new Uint32Array(iCount);
+  let vo = 0, io = 0;
+  for (const g of geos) {
+    const n = g.attributes.position.count;
+    pos.set(g.attributes.position.array, vo * 3);
+    nor.set(g.attributes.normal.array, vo * 3);
+    uv.set(g.attributes.uv.array, vo * 2);
+    const gi = g.index.array;
+    for (let i = 0; i < gi.length; i++) idx[io + i] = gi[i] + vo;
+    vo += n; io += gi.length;
+  }
+  const out = new THREE.BufferGeometry();
+  out.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  out.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+  out.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  out.setIndex(new THREE.BufferAttribute(idx, 1));
+  return out;
+}
+// One merged eyes geometry + one merged shin+foot geometry, shared by all rigs.
+const eyesGeo = () => geo('eyes-merged', () => mergeGeos([
+  xform(sphGeo(0.035, 8, 6), -0.105, 0.32, 0.29, 0.8, 1, 0.5),
+  xform(sphGeo(0.035, 8, 6), 0.105, 0.32, 0.29, 0.8, 1, 0.5),
+]));
+const shinFootGeo = () => geo('shinfoot-merged', () => mergeGeos([
+  xform(capGeo(0.08, 0.34), 0, -0.22, 0),
+  xform(boxGeo(0.16, 0.08, 0.3), 0, -0.46, 0.06),
+]));
+
 function capsule(parent, r, len, material, x, y, z) {
   const m = new THREE.Mesh(capGeo(r, len), material);
   m.position.set(x, y, z);
@@ -78,12 +126,8 @@ export function buildRig(opts = {}) {
   hair.position.set(0, 0.48, -0.04);
   hair.scale.set(1.02, 0.55, 0.98);
   head.add(hair);
-  for (const dx of [-0.105, 0.105]) {
-    const eye = new THREE.Mesh(sphGeo(0.035, 8, 6), M.black);
-    eye.position.set(dx, 0.32, 0.29);
-    eye.scale.set(0.8, 1, 0.5);
-    head.add(eye);
-  }
+  const eyes = new THREE.Mesh(eyesGeo(), M.black);
+  head.add(eyes);
   if (crown) {
     const band = new THREE.Mesh(boxGeo(0.52, 0.06, 0.42), M.cyanGlow);
     band.position.set(0, 0.72, 0);
@@ -113,11 +157,9 @@ export function buildRig(opts = {}) {
     const knee = new THREE.Group();
     knee.position.set(0, -0.5, 0);
     hip.add(knee);
-    capsule(knee, 0.08, 0.34, M.deep, 0, -0.22, 0);
-    const foot = new THREE.Mesh(boxGeo(0.16, 0.08, 0.3), M.deep);
-    foot.position.set(0, -0.46, 0.06);
-    foot.castShadow = true;
-    knee.add(foot);
+    const shinFoot = new THREE.Mesh(shinFootGeo(), M.deep);
+    shinFoot.castShadow = true;
+    knee.add(shinFoot);
     return { hip, knee };
   }
   const legL = leg(-1);

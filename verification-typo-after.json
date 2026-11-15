@@ -1,0 +1,117 @@
+{
+  "base": "http://127.0.0.1:8126",
+  "tag": "after",
+  "errs": [],
+  "shots": {
+    "fascia": {
+      "pos": [
+        0,
+        8,
+        16
+      ],
+      "target": [
+        0,
+        7.9,
+        6.7
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-fascia.png"
+    },
+    "research": {
+      "pos": [
+        -6.75,
+        3.6,
+        1.5
+      ],
+      "target": [
+        -6.75,
+        3.55,
+        -6.36
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-research.png"
+    },
+    "collab": {
+      "pos": [
+        -7.25,
+        3.4,
+        5.5
+      ],
+      "target": [
+        -7.25,
+        3.3,
+        -1.9
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-collab.png"
+    },
+    "ceo-nameplate": {
+      "pos": [
+        -6,
+        7.6,
+        3.5
+      ],
+      "target": [
+        -6,
+        7.6,
+        -3.4
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-ceo-nameplate.png"
+    },
+    "exec-office": {
+      "pos": [
+        -5.75,
+        7.2,
+        1.5
+      ],
+      "target": [
+        -5.75,
+        7.2,
+        -6.36
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-exec-office.png"
+    },
+    "glass-viewing": {
+      "pos": [
+        0,
+        7.2,
+        1.5
+      ],
+      "target": [
+        0,
+        7.2,
+        -6.36
+      ],
+      "file": "/home/hatch/workspace/dipa-hq/rebuild-audit/screenshots/typo-after-glass-viewing.png"
+    }
+  },
+  "signTextures": [
+    {
+      "text": "DIPA NEXUS",
+      "w": 1024,
+      "h": 224,
+      "anisotropy": 8
+    },
+    {
+      "text": "DFNX PRIME · EXECUTIVE OFFICE",
+      "w": 1024,
+      "h": 224,
+      "anisotropy": 8
+    },
+    {
+      "text": "RESEARCH LAB",
+      "w": 1024,
+      "h": 224,
+      "anisotropy": 8
+    },
+    {
+      "text": "COLLABORATION ROOM",
+      "w": 1024,
+      "h": 224,
+      "anisotropy": 8
+    },
+    {
+      "text": "GLASS VIEWING · OPERATIONS BELOW",
+      "w": 1024,
+      "h": 224,
+      "anisotropy": 8
+    }
+  ]
+}
