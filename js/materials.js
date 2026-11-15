@@ -23,15 +23,13 @@ export const M = {
   skin: std(PALETTE.skin, 0.8, 0),
   black: std(0x101c2c, 0.3, 0.1),
   dark: std(0x0a1421, 0.3, 0.1),
-  glass: new THREE.MeshPhysicalMaterial({
-    color: 0x7bdcff, roughness: 0.16, metalness: 0.08,
-    transparent: true, opacity: 0.16, transmission: 0.18, side: THREE.DoubleSide,
-  }),
+  // Perf fix: MeshPhysicalMaterial + transmission forced a second full
+  // scene render into a transmission target EVERY frame — the single
+  // biggest GPU cost on a phone. Plain transparent standard material
+  // keeps the glass look without the extra pass.
+  glass: std(0x7bdcff, 0.16, 0.08, { transparent: true, opacity: 0.16, side: THREE.DoubleSide }),
   glassDark: std(0x2a7090, 0.22, 0.15, { transparent: true, opacity: 0.32, side: THREE.DoubleSide }),
-  glassFloor: new THREE.MeshPhysicalMaterial({
-    color: 0x9fe8ff, roughness: 0.08, metalness: 0.1,
-    transparent: true, opacity: 0.28, side: THREE.DoubleSide,
-  }),
+  glassFloor: std(0x9fe8ff, 0.08, 0.1, { transparent: true, opacity: 0.28, side: THREE.DoubleSide }),
   water: new THREE.MeshStandardMaterial({
     color: 0x2fb9e8, roughness: 0.08, metalness: 0.1,
     transparent: true, opacity: 0.85, emissive: 0x0a4a6b, emissiveIntensity: 0.7,
@@ -39,6 +37,69 @@ export const M = {
   screenCyan: std(0x123a56, 0.22, 0.25, { emissive: 0x43c9ff, emissiveIntensity: 0.55 }),
   screenViolet: std(0x243b64, 0.2, 0.2, { emissive: 0x927aff, emissiveIntensity: 0.55 }),
 };
+
+// --- Perf fix: instancing helpers -----------------------------------------
+// Hundreds of identical small parts (mullions, columns, stair steps,
+// server LEDs, road dashes, city towers, workstation parts) were each
+// their own mesh = their own draw call (~1,400 total). One InstancedMesh
+// per material collapses them to a single draw call each.
+// t: { x, y, z, rotY?, sx?, sy?, sz? } — unit geometry scaled to size.
+const _m4 = new THREE.Matrix4(), _q = new THREE.Quaternion(),
+  _e = new THREE.Euler(), _v = new THREE.Vector3(), _s = new THREE.Vector3();
+function fillInstance(mesh, list) {
+  list.forEach((t, i) => {
+    _e.set(0, t.rotY || 0, 0);
+    _q.setFromEuler(_e);
+    _v.set(t.x, t.y, t.z);
+    _s.set(t.sx ?? 1, t.sy ?? 1, t.sz ?? 1);
+    _m4.compose(_v, _q, _s);
+    mesh.setMatrixAt(i, _m4);
+  });
+  mesh.instanceMatrix.needsUpdate = true;
+}
+
+export function instancedBoxes(parent, material, list, opts = {}) {
+  if (!list.length) return null;
+  const m = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), material, list.length);
+  fillInstance(m, list);
+  m.castShadow = !!opts.shadow;
+  m.receiveShadow = true;
+  parent.add(m);
+  return m;
+}
+
+export function instancedGeo(parent, geometry, material, list, opts = {}) {
+  if (!list.length) return null;
+  const m = new THREE.InstancedMesh(geometry, material, list.length);
+  fillInstance(m, list);
+  m.castShadow = !!opts.shadow;
+  m.receiveShadow = true;
+  parent.add(m);
+  return m;
+}
+
+// Perf fix: plants were 7 meshes each (~50 across the scene). Collect
+// pots/stems/leaves into instanced sets, flushed once per floor.
+export function createPlantCollector() {
+  const pots = [], stems = [], leaves = [];
+  return {
+    add(x, z, y) {
+      pots.push({ x, y: y + 0.18, z, sx: 0.22, sy: 0.35, sz: 0.22 });
+      stems.push({ x, y: y + 0.8, z, sx: 0.035, sy: 0.9, sz: 0.035 });
+      for (let i = 0; i < 5; i++) {
+        leaves.push({
+          x: x + Math.cos(i * 1.26) * 0.25, y: y + 1.15 + Math.sin(i) * 0.12,
+          z: z + Math.sin(i * 1.26) * 0.25, sx: 0.13, sy: 0.33, sz: 0.14,
+        });
+      }
+    },
+    flush(parent) {
+      instancedGeo(parent, new THREE.CylinderGeometry(1, 1, 1, 9), M.wood, pots);
+      instancedGeo(parent, new THREE.CylinderGeometry(1, 1, 1, 6), M.plant, stems);
+      instancedGeo(parent, new THREE.SphereGeometry(1, 12, 10), M.plant, leaves);
+    },
+  };
+}
 
 // Clone a screen material so the environment animator can pulse each
 // monitor independently (a shared material would pulse all screens at once).

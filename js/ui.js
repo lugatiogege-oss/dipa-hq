@@ -99,17 +99,23 @@ export function initSettings(currentLevel, onChange) {
       const level = el.dataset.quality;
       if (!QUALITY[level]) return;
       onChange(level);
-      document.querySelectorAll('#settingsMenu [data-quality]').forEach(n => n.classList.toggle('active', n === el));
+      markQuality(level);
       toast('Kualitas grafis: ' + level + (level === 'ULTRA' ? ' (antialias aktif saat reload)' : ''));
     });
   });
   // mark current level
-  document.querySelectorAll('#settingsMenu [data-quality]').forEach(n => {
-    n.classList.toggle('active', n.dataset.quality === currentLevel);
-  });
+  markQuality(currentLevel);
   // close popovers when clicking the 3D canvas
   document.getElementById('scene')?.addEventListener('pointerdown', () => {
     document.querySelectorAll('.popover.show').forEach(p => p.classList.remove('show'));
+  });
+}
+
+// Perf fix: let the adaptive monitor (main.js) reflect an automatic
+// step-down in the settings menu, so the shown level is always honest.
+export function markQuality(level) {
+  document.querySelectorAll('#settingsMenu [data-quality]').forEach(n => {
+    n.classList.toggle('active', n.dataset.quality === level);
   });
 }
 

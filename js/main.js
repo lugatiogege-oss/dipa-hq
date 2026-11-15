@@ -20,8 +20,8 @@ import { createCameraController } from './camera.js';
 import { renderDirectory, updateActivities } from './status.js';
 import { createActivitySystem } from './activity.js';
 import { createEnvironment } from './environment.js';
-import { loadQuality, saveQuality, applyQuality, QUALITY } from './performance.js';
-import { toast, initPanels, initNav, initBottomBar, initCameraButtons, initSettings, setRoutine } from './ui.js';
+import { loadQuality, saveQuality, applyQuality, QUALITY, nextLowerQuality } from './performance.js';
+import { toast, initPanels, initNav, initBottomBar, initCameraButtons, initSettings, setRoutine, markQuality } from './ui.js';
 import { AGENTS, CEO } from './config.js';
 
 const loader = document.getElementById('loader');
@@ -84,10 +84,10 @@ try {
   initNav(cam);
   initBottomBar(cam);
   initCameraButtons(cam);
-  initSettings(qualityLevel, (level) => {
-    applyQuality(renderer, level);
-    saveQuality(level);
-  });
+  // Perf fix: manual quality change goes through app.applyQualityLevel
+  // (defined in the if (app) block below) so the adaptive state, the
+  // render scale and the pulse effects stay in sync.
+  initSettings(qualityLevel, (level) => { if (app) app.applyQualityLevel(level, false); });
 
   // --- Character tap (toast, non-blocking — v2.2's alert() is not used) ---
   const ray = new THREE.Raycaster();
@@ -110,7 +110,11 @@ try {
       : a.name + ' · ' + a.room + ' · ' + (activity.getActivity(a.id) || 'UNKNOWN') + ' · SIMULATION · UNKNOWN · Belum terhubung ke platform');
   });
 
-  app = { sceneCtx, cam, ceo, dayNight, interiorLights, renderer, controls, activity, environment, actors, ceoActor, pickables };
+  app = {
+    sceneCtx, cam, ceo, dayNight, interiorLights, renderer, controls, activity, environment, actors, ceoActor, pickables,
+    // Perf fix: adaptive quality state (see applyQualityLevel below).
+    adaptive: { level: qualityLevel, lowSeconds: 0, reducedScale: false },
+  };
 } catch (err) {
   showError(err.message || String(err));
 }
@@ -123,11 +127,41 @@ if (app) {
   let fpsFrames = 0, fpsTime = 0;
   const fpsSamples = [];
   window.__DIPA_FPS = { current: 0, avg: 0, min: 0, samples: 0 };
-  window.__DIPA_PERF = { calls: 0, triangles: 0, geometries: 0 };
+  window.__DIPA_PERF = { calls: 0, triangles: 0, geometries: 0, textures: 0, programs: 0 };
+
+  // --- Perf fix: adaptive quality -----------------------------------------
+  // If FPS stays low, step down automatically (ULTRA -> BALANCED ->
+  // PERFORMANCE) and, as a last resort on PERFORMANCE, drop the render
+  // scale to 0.85. Pulse effects (fountain, neon, city twinkle, screens)
+  // are NEVER disabled automatically: the fountain is a required feature
+  // and freezing it was a regression found in verification (fountainJet
+  // frozen at 0.8695 while the last-resort step ran under llvmpipe).
+  // The shown level in the settings menu is always updated, so the state
+  // stays honest.
+  // Never steps back up on its own (avoids oscillation); the owner can
+  // raise it manually in Settings.
+  app.applyQualityLevel = (level, auto) => {
+    const ad = app.adaptive;
+    ad.level = level;
+    ad.lowSeconds = 0;
+    ad.reducedScale = false;
+    app.environment.setPulseEnabled(true);
+    applyQuality(app.renderer, level);
+    saveQuality(level);
+    markQuality(level);
+    if (auto) toast('Kualitas grafis diturunkan otomatis ke ' + level + ' agar lebih lancar');
+  };
 
   // --- Debug / verification API (no user-facing function; proves the
   // architecture is config-driven and lets the harness force poses) ---
   window.__DIPA_DEBUG = {
+    quality: () => ({
+      level: app.adaptive.level,
+      pixelRatio: app.renderer.getPixelRatio(),
+      shadows: app.renderer.shadowMap.enabled,
+      reducedScale: app.adaptive.reducedScale,
+      auto: true,
+    }),
     activities: () => app.activity.getAll(),
     positions: () => Object.fromEntries(app.actors.map(a => [a.id, {
       x: +a.g.position.x.toFixed(2), z: +a.g.position.z.toFixed(2), activity: a.activity,
@@ -210,7 +244,34 @@ if (app) {
         samples: fpsSamples.length,
       };
       const info = app.renderer.info.render;
-      window.__DIPA_PERF = { calls: info.calls, triangles: info.triangles, geometries: app.renderer.info.memory.geometries };
+      window.__DIPA_PERF = {
+        calls: info.calls, triangles: info.triangles,
+        geometries: app.renderer.info.memory.geometries,
+        textures: app.renderer.info.memory.textures,
+        programs: app.renderer.info.programs ? app.renderer.info.programs.length : 0,
+      };
+      // Adaptive step-down: sustained low FPS -> lower quality.
+      // Thresholds are wall-clock FPS on the real device; under the
+      // llvmpipe verifier (~0.5 fps) this fires promptly by design.
+      const ad = app.adaptive;
+      if (fps < 20) {
+        ad.lowSeconds++;
+        if (ad.lowSeconds >= 3) {
+          const lower = nextLowerQuality(ad.level);
+          if (lower) {
+            app.applyQualityLevel(lower, true);
+          } else if (!ad.reducedScale && fps < 15) {
+            ad.reducedScale = true;
+            app.renderer.setPixelRatio(0.85);
+            // Pulse effects deliberately NOT disabled here: fountain/neon/
+            // city/screens must keep moving (required feature).
+            toast('Mode hemat diaktifkan otomatis agar lebih lancar');
+          }
+          ad.lowSeconds = 0;
+        }
+      } else {
+        ad.lowSeconds = 0;
+      }
       fpsFrames = 0;
       fpsTime = 0;
     }

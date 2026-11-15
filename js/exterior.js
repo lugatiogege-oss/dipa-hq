@@ -3,12 +3,15 @@
 // entrance canopy/columns/steps and the D identity.
 // Nothing here is removed without a technical reason (owner affirmation §2).
 import * as THREE from 'three';
-import { M, box, cyl, sphere, glowLight } from './materials.js';
+import { M, box, cyl, sphere, glowLight, instancedGeo } from './materials.js';
 
+// Perf fix: trees/bushes were 3 meshes each (~35). Collected into
+// instanced sets, flushed at the end of buildExterior.
+const EX = { trunks: [], crowns: [] };
 function tree(parent, x, z, s = 1) {
-  cyl(parent, 0.16 * s, 0.22 * s, 1.1 * s, M.wood, x, 0.55 * s - 0.3, z, 8);
-  sphere(parent, 0.75 * s, M.plant, x, 1.5 * s - 0.3, z, 1, 1.25, 1);
-  sphere(parent, 0.5 * s, M.plant, x + 0.45 * s, 1.1 * s - 0.3, z + 0.2 * s, 1, 1, 1);
+  EX.trunks.push({ x, y: 0.55 * s - 0.3, z, sx: 0.19 * s, sy: 1.1 * s, sz: 0.19 * s });
+  EX.crowns.push({ x, y: 1.5 * s - 0.3, z, sx: 0.75 * s, sy: 0.94 * s, sz: 0.75 * s });
+  EX.crowns.push({ x: x + 0.45 * s, y: 1.1 * s - 0.3, z: z + 0.2 * s, sx: 0.5 * s, sy: 0.5 * s, sz: 0.5 * s });
 }
 
 export function buildExterior(scene) {
@@ -90,7 +93,8 @@ export function buildExterior(scene) {
   // cabin accent stripe + nav lights
   box(heli, 1.9, 0.12, 0.1, M.cyanGlow, 0.2, 0.85, 0.82, { shadow: false });
   sphere(heli, 0.06, M.cyanGlow, 1.9, 0.6, 0, 1, 1, 1);
-  glowLight(scene, 0x987cff, 0.7, 5.5, 9.4, -2.5, 7);
+  // Perf fix: the helicopter point light is dropped (roof is dark anyway;
+  // the pad neon ring + city lights keep the silhouette readable).
 
   // ---------- Fountain (front centre, z ~11.5) ----------
   const fount = new THREE.Group();
@@ -120,12 +124,12 @@ export function buildExterior(scene) {
   for (const x of [-13.5, 13.5]) {
     box(scene, 4, 0.12, 9, new THREE.MeshStandardMaterial({ color: 0x203c39, roughness: 0.9 }), x, -0.72, 1);
     for (let j = 0; j < 3; j++) tree(scene, x + (j % 2 ? 1 : -1), -2.5 + j * 3.2, 0.9 + j * 0.15);
-    for (let k = 0; k < 4; k++) sphere(scene, 0.4, M.plant, x + (k % 2 ? 1.2 : -1.2), -0.35, -3.5 + k * 2.4, 1, 0.7, 1);
+    for (let k = 0; k < 4; k++) EX.crowns.push({ x: x + (k % 2 ? 1.2 : -1.2), y: -0.35, z: -3.5 + k * 2.4, sx: 0.4, sy: 0.28, sz: 0.4 });
   }
   // front planters flanking the entrance walkway
   for (const x of [-6.5, 6.5]) {
     box(scene, 2.2, 0.4, 1.0, M.deep, x, -0.5, 8.2);
-    for (let k = 0; k < 3; k++) sphere(scene, 0.32, M.plant, x - 0.6 + k * 0.6, -0.05, 8.2, 1, 0.9, 1);
+    for (let k = 0; k < 3; k++) EX.crowns.push({ x: x - 0.6 + k * 0.6, y: -0.05, z: 8.2, sx: 0.32, sy: 0.29, sz: 0.32 });
   }
   // walkway from road to entrance
   box(scene, 4.5, 0.06, 3.5, new THREE.MeshStandardMaterial({ color: 0x2a4456, roughness: 0.7 }), 0, -0.72, 9.6, { shadow: false });
@@ -156,6 +160,10 @@ export function buildExterior(scene) {
   logo.position.set(0, 3.65, 9.22);
   scene.add(logo);
   const entranceGlow = glowLight(scene, 0x56dfff, 0.8, 0, 2.8, 8.6, 8);
+
+  // --- Emit instanced garden parts (was ~35 meshes) ---
+  instancedGeo(scene, new THREE.CylinderGeometry(1, 1, 1, 8), M.wood, EX.trunks);
+  instancedGeo(scene, new THREE.SphereGeometry(1, 12, 10), M.plant, EX.crowns);
 
   return {
     rotorMain, rotorTail,

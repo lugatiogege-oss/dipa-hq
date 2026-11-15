@@ -36,3 +36,12 @@ export function applyQuality(renderer, level) {
   renderer.shadowMap.needsUpdate = true;
   return q;
 }
+
+// Perf fix: quality ladder for the adaptive monitor (main.js). Steps down
+// ULTRA -> BALANCED -> PERFORMANCE when FPS stays low; PERFORMANCE is the
+// floor for named levels (below it only the render scale drops further).
+export const QUALITY_ORDER = ['ULTRA', 'BALANCED', 'PERFORMANCE'];
+export function nextLowerQuality(level) {
+  const i = QUALITY_ORDER.indexOf(level);
+  return i >= 0 && i < QUALITY_ORDER.length - 1 ? QUALITY_ORDER[i + 1] : null;
+}

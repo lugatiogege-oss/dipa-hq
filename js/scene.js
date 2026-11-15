@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { PALETTE } from './config.js';
-import { M, box, cyl } from './materials.js';
+import { M, box, instancedBoxes, instancedGeo } from './materials.js';
 
 export function createScene(host, quality) {
   const scene = new THREE.Scene();
@@ -27,7 +27,10 @@ export function createScene(host, quality) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping; // from v1 (smoothest look)
   renderer.toneMappingExposure = 1.15;
   renderer.shadowMap.enabled = quality.shadows;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // Perf fix: PCFSoft is the most expensive shadow filter; PCF is much
+  // cheaper and looks the same at this scale. Smaller map on BALANCED.
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  if (quality.shadows) renderer.shadowMap.autoUpdate = true;
   host.appendChild(renderer.domElement);
 
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -44,7 +47,10 @@ export function createScene(host, quality) {
   const sun = new THREE.DirectionalLight(0xffe7c3, 0.4);
   sun.position.set(-13, 22, 15);
   sun.castShadow = quality.shadows;
-  sun.shadow.mapSize.set(1024, 1024);
+  // Perf fix: 512 map on BALANCED (1024 only on ULTRA) — shadow
+  // resolution barely shows at this camera distance.
+  const shadowSize = quality.pixelRatio >= 2 ? 1024 : 512;
+  sun.shadow.mapSize.set(shadowSize, shadowSize);
   sun.shadow.camera.left = -20; sun.shadow.camera.right = 20;
   sun.shadow.camera.top = 20; sun.shadow.camera.bottom = -20;
   scene.add(sun);
@@ -60,9 +66,11 @@ export function createScene(host, quality) {
   ground.position.y = -0.9;
   ground.receiveShadow = true;
   scene.add(ground);
-  // road (front, z 8..14) with lane dashes
+  // road (front, z 8..14) with lane dashes — dashes instanced (was 15 meshes)
   box(scene, 46, 0.08, 6, M.deep, 0, -0.82, 11);
-  for (let x = -21; x <= 21; x += 3) box(scene, 1.8, 0.02, 0.1, M.silver, x, -0.76, 11, { shadow: false });
+  const dashes = [];
+  for (let x = -21; x <= 21; x += 3) dashes.push({ x, y: -0.76, z: 11, sx: 1.8, sy: 0.02, sz: 0.1 });
+  instancedBoxes(scene, M.silver, dashes);
   // sidewalk strip
   box(scene, 46, 0.1, 1.6, new THREE.MeshStandardMaterial({ color: 0x1c3346, roughness: 0.8 }), 0, -0.8, 7.6);
 
@@ -122,8 +130,14 @@ function buildCity(scene) {
     map: t, roughness: 0.85, metalness: 0.1,
     emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.55,
   }));
-  const group = new THREE.Group();
-  const cityMats = [];
+  // Perf fix: 34 towers were 34 meshes + 34 cloned materials. Now 3
+  // InstancedMesh (one per texture) + 1 for rooftop beacons. Twinkle
+  // still works per texture group (environment.js pulses baseMats).
+  // NOTE: cityMats returned here are the 3 SHARED base materials — the
+  // twinkle now pulses per texture group instead of per tower (the
+  // per-tower flash was invisible at this distance anyway).
+  const towerLists = [[], [], []];
+  const beacons = [];
   // Ring of towers around the HQ, leaving the front (camera side) lower
   // so the building stays the hero.
   for (let i = 0; i < 34; i++) {
@@ -134,14 +148,11 @@ function buildCity(scene) {
     const w = 4 + Math.random() * 5;
     const d = 4 + Math.random() * 5;
     const h = (z > 4 ? 5 + Math.random() * 7 : 8 + Math.random() * 20); // low in front
-    const m = baseMats[i % 3].clone();
-    cityMats.push(m);
-    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
-    mesh.position.set(x, h / 2 - 0.9, z);
-    group.add(mesh);
+    towerLists[i % 3].push({ x, y: h / 2 - 0.9, z, sx: w, sy: h, sz: d });
     // rooftop beacon on the tallest towers
-    if (h > 20) cyl(group, 0.08, 0.08, 1.2, M.violetGlow, x, h - 0.3, z, 6);
+    if (h > 20) beacons.push({ x, y: h - 0.3, z, sx: 1, sy: 1.2, sz: 1 });
   }
-  scene.add(group);
-  return cityMats;
+  for (let i = 0; i < 3; i++) instancedBoxes(scene, baseMats[i], towerLists[i]);
+  if (beacons.length) instancedGeo(scene, new THREE.CylinderGeometry(0.08, 0.08, 1.2, 6), M.violetGlow, beacons);
+  return baseMats;
 }

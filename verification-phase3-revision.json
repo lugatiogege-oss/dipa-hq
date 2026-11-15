@@ -39,7 +39,7 @@
       "collaborationRoomRow": true,
       "simulationLabel": true,
       "divisionsRow": "DivisionsBelum diatur",
-      "clockText": "01:41:59 WIB",
+      "clockText": "02:43:08 WIB",
       "phaseText": "NIGHT · WIB"
     },
     "activitiesT0": {
@@ -55,44 +55,44 @@
     "typing": {
       "t0": {
         "agent-1": "WORKING",
-        "agent-2": "THINKING",
-        "agent-3": "WORKING",
-        "agent-4": "IDLE",
+        "agent-2": "WORKING",
+        "agent-3": "IDLE",
+        "agent-4": "WORKING",
         "agent-5": "IDLE",
         "agent-6": "WORKING",
-        "agent-7": "WORKING"
+        "agent-7": "THINKING"
       },
       "t2": {
         "agent-1": "WORKING",
-        "agent-2": "THINKING",
-        "agent-3": "WORKING",
-        "agent-4": "IDLE",
-        "agent-5": "IDLE",
+        "agent-2": "WORKING",
+        "agent-3": "IDLE",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
         "agent-6": "WORKING",
         "agent-7": "WORKING"
       },
       "t4": {
-        "agent-1": "WORKING",
-        "agent-2": "THINKING",
-        "agent-3": "WORKING",
-        "agent-4": "IDLE",
-        "agent-5": "IDLE",
+        "agent-1": "IDLE",
+        "agent-2": "WORKING",
+        "agent-3": "WALKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
         "agent-6": "WORKING",
-        "agent-7": "THINKING"
+        "agent-7": "WORKING"
       }
     },
     "walkCheck": {
       "before": {
         "x": -1,
         "z": 1.15,
-        "activity": "IDLE"
+        "activity": "WORKING"
       },
       "after": {
-        "x": -2.22,
-        "z": -0.19,
-        "activity": "WALKING"
+        "x": -2.45,
+        "z": -0.45,
+        "activity": "INTERACTING"
       },
-      "moved": 1.8121810064118873
+      "moved": 2.1592822881689187
     },
     "thinking": {
       "t0": {
@@ -105,7 +105,7 @@
         "agent-7": "WORKING"
       },
       "t2": {
-        "agent-1": "THINKING",
+        "agent-1": "WORKING",
         "agent-2": "WORKING",
         "agent-3": "WORKING",
         "agent-4": "WORKING",
@@ -117,20 +117,20 @@
     "activityChange": {
       "before": {
         "agent-1": "WORKING",
-        "agent-2": "WORKING",
-        "agent-3": "WORKING",
-        "agent-4": "WORKING",
-        "agent-5": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "IDLE",
+        "agent-4": "THINKING",
+        "agent-5": "THINKING",
         "agent-6": "WORKING",
-        "agent-7": "WORKING"
+        "agent-7": "THINKING"
       },
       "after": {
         "agent-1": "WORKING",
         "agent-2": "THINKING",
         "agent-3": "WORKING",
-        "agent-4": "WORKING",
+        "agent-4": "THINKING",
         "agent-5": "IDLE",
-        "agent-6": "WORKING",
+        "agent-6": "IDLE",
         "agent-7": "WORKING"
       },
       "changed": true
@@ -138,10 +138,10 @@
     "ceo": {
       "point": {
         "arrived": true,
-        "waitedMs": 24211,
+        "waitedMs": 8019,
         "pos": {
-          "x": -1,
-          "z": -3.48,
+          "x": 0,
+          "z": -3.5,
           "activity": "IDLE"
         },
         "behaviour": "POINT",
@@ -149,10 +149,10 @@
       },
       "coffee": {
         "arrived": true,
-        "waitedMs": 40300,
+        "waitedMs": 12110,
         "pos": {
-          "x": -6.69,
-          "z": 2.23,
+          "x": -7.01,
+          "z": 2.53,
           "activity": "IDLE"
         },
         "behaviour": "COFFEE",
@@ -160,10 +160,10 @@
       },
       "greet": {
         "arrived": true,
-        "waitedMs": 36276,
+        "waitedMs": 8169,
         "pos": {
-          "x": 0.23,
-          "z": 0.81,
+          "x": 0.53,
+          "z": 0.73,
           "activity": "IDLE"
         },
         "behaviour": "GREET",
@@ -173,51 +173,51 @@
         "behaviour": "SLEEP",
         "routine": "Sleeping",
         "pos": {
-          "x": -5.98,
-          "z": -3.39,
+          "x": -6,
+          "z": -3.4,
           "activity": "IDLE"
         }
       }
     },
     "rotor": {
       "t0": {
-        "rotorAngle": 430.0575,
-        "doorPhase": "closing",
-        "doorOpen": 0.9,
-        "fountainJet": 1.0301807665777463
-      },
-      "t2": {
-        "rotorAngle": 434.3775,
-        "doorPhase": "closing",
-        "doorOpen": 0.21,
-        "fountainJet": 0.8861587477571253
-      },
-      "t4": {
-        "rotorAngle": 438.3975,
+        "rotorAngle": 824.3849999999998,
         "doorPhase": "closed",
         "doorOpen": 0,
-        "fountainJet": 0.8604891778349401
+        "fountainJet": 0.9201677704268905
+      },
+      "t2": {
+        "rotorAngle": 841.6949999999998,
+        "doorPhase": "open",
+        "doorOpen": 1,
+        "fountainJet": 0.8681175883786161
+      },
+      "t4": {
+        "rotorAngle": 861.0074999999998,
+        "doorPhase": "open",
+        "doorOpen": 1,
+        "fountainJet": 1.0900857964172113
       },
       "moved": true
     },
     "fountain": {
       "t0": {
-        "rotorAngle": 475.75499999999994,
+        "rotorAngle": 929.3474999999996,
         "doorPhase": "closed",
         "doorOpen": 0,
-        "fountainJet": 1.079699542869115
+        "fountainJet": 1.1216276590565244
       },
       "t2": {
-        "rotorAngle": 480.11249999999995,
+        "rotorAngle": 951.6374999999997,
         "doorPhase": "closed",
         "doorOpen": 0,
-        "fountainJet": 1.1198343067676102
+        "fountainJet": 0.862204780059928
       },
       "t4": {
-        "rotorAngle": 487.8375,
+        "rotorAngle": 968.8649999999997,
         "doorPhase": "closed",
         "doorOpen": 0,
-        "fountainJet": 1.1398322171240758
+        "fountainJet": 0.9432877730676789
       },
       "changed": true
     },
@@ -235,7 +235,7 @@
         "world": {
           "x": -7,
           "z": -3.65,
-          "activity": "THINKING"
+          "activity": "WORKING"
         },
         "screen": {
           "x": 589.8,
@@ -245,12 +245,12 @@
       },
       "toast": {
         "display": "block",
-        "text": "Agent 1 · Research Lab · THINKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+        "text": "Agent 1 · Research Lab · WORKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
       }
     },
     "clockTicks": {
-      "clockA": "01:51:51 WIB",
-      "clockB": "01:51:53 WIB",
+      "clockA": "02:45:59 WIB",
+      "clockB": "02:46:01 WIB",
       "changed": true
     },
     "settingsMenuVisible": true,
@@ -258,22 +258,24 @@
     "upgradeToast": "Fitur Upgrade belum tersedia — direncanakan Fase 5",
     "reportToast": "Fitur Report belum tersedia — direncanakan Fase 5",
     "fpsDesktop": {
-      "current": 0.5,
-      "avg": 0.4,
-      "min": 0.2,
+      "current": 0.9,
+      "avg": 2.2,
+      "min": 0.9,
       "samples": 30
     },
     "perfDesktop": {
-      "calls": 1424,
-      "triangles": 76750,
-      "geometries": 720
+      "calls": 320,
+      "triangles": 40416,
+      "geometries": 186,
+      "textures": 31,
+      "programs": 22
     },
     "finalActivities": {
       "agent-1": "THINKING",
-      "agent-2": "WORKING",
-      "agent-3": "INTERACTING",
-      "agent-4": "WORKING",
-      "agent-5": "WALKING",
+      "agent-2": "IDLE",
+      "agent-3": "WORKING",
+      "agent-4": "THINKING",
+      "agent-5": "WORKING",
       "agent-6": "WORKING",
       "agent-7": "WORKING"
     }
@@ -316,15 +318,17 @@
       "agent-7": "WORKING"
     },
     "fpsMobile": {
-      "current": 1.7,
-      "avg": 1.9,
-      "min": 1.3,
-      "samples": 11
+      "current": 11.9,
+      "avg": 10.5,
+      "min": 4.3,
+      "samples": 12
     },
     "perfMobile": {
-      "calls": 1011,
-      "triangles": 50976,
-      "geometries": 496
+      "calls": 271,
+      "triangles": 36726,
+      "geometries": 153,
+      "textures": 27,
+      "programs": 10
     },
     "leftCloseWorks": true,
     "leftReopenWorks": true

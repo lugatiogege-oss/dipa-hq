@@ -1,0 +1,274 @@
+{
+  "desktop": {
+    "info": {
+      "dpr": 1,
+      "innerWidth": 1440,
+      "workers": 7,
+      "quality": null,
+      "perf": {
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711
+      },
+      "fps": {
+        "current": 0.7,
+        "avg": 0.4,
+        "min": 0.3,
+        "samples": 5
+      }
+    },
+    "samples": [
+      {
+        "t": 1,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 2,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 3,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 4,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 5,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 6,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 7,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 8,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 9,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 10,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 11,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 12,
+        "fps": 0.4,
+        "calls": 1438,
+        "triangles": 78134,
+        "geometries": 711,
+        "textures": null,
+        "programs": null
+      }
+    ],
+    "agg": {
+      "current": 0.4,
+      "avg": 0.4,
+      "min": 0.3,
+      "samples": 10
+    },
+    "errors": []
+  },
+  "mobile": {
+    "info": {
+      "dpr": 1,
+      "innerWidth": 390,
+      "workers": 7,
+      "quality": null,
+      "perf": {
+        "calls": 1013,
+        "triangles": 51136,
+        "geometries": 496
+      },
+      "fps": {
+        "current": 1.7,
+        "avg": 1.6,
+        "min": 0.9,
+        "samples": 4
+      }
+    },
+    "samples": [
+      {
+        "t": 1,
+        "fps": 1.8,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 2,
+        "fps": 2.1,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 3,
+        "fps": 1.4,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 4,
+        "fps": 1.4,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 5,
+        "fps": 2,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 6,
+        "fps": 1.9,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 7,
+        "fps": 2,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 8,
+        "fps": 2.1,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 9,
+        "fps": 2,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 10,
+        "fps": 2.2,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 11,
+        "fps": 1.8,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      },
+      {
+        "t": 12,
+        "fps": 1.8,
+        "calls": 1011,
+        "triangles": 50976,
+        "geometries": 496,
+        "textures": null,
+        "programs": null
+      }
+    ],
+    "agg": {
+      "current": 1.8,
+      "avg": 1.8,
+      "min": 0.9,
+      "samples": 14
+    },
+    "errors": []
+  }
+}
