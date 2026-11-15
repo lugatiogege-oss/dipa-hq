@@ -117,3 +117,13 @@ Verifikasi regresi pertama setelah perbaikan menemukan fountain membeku (`founta
 5. Kalau masih berat, laporkan: bagian mana yang paling terasa berat (geser kamera? saat pertama buka? animasi?).
 
 **Fase 4 BELUM dimulai. Tidak ada ZIP.**
+
+---
+
+## 7. Verifikasi URL live setelah deploy
+
+Deploy: commit `bd03191` di `https://github.com/lugatiogege-oss/dipa-hq` (main), Pages status **built**, `curl` live URL **HTTP 200**, dan `js/main.js` live mengandung perbaikan fountain. Cek ulang URL live di browser asli (Xvfb + headful Firefox, `live-check-perffix.js`, ~02:48 WIB):
+
+- **Desktop:** `__DIPA_READY=true`, 0 console error, 0 page error, 0 failed request, 0 external request; jam berdetak (02:48:26 → 02:48:30 WIB); 7 worker; kualitas PERFORMANCE otomatis (render scale 0,85 — wajar di bawah llvmpipe); draw calls **320**, segitiga 40.416, FPS rata-rata 2,0 (llvmpipe); fountainJet 0,949 (bergerak).
+- **HP 390px:** `__DIPA_READY=true`, 0 console/page error, 0 failed request; draw calls **271**, segitiga 36.630, FPS rata-rata 10,4 (llvmpipe).
+- Screenshot live: `rebuild/screenshots/live-perffix-desktop.png` dan `live-perffix-mobile.png`.
