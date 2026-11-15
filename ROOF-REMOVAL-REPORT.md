@@ -87,4 +87,10 @@ Browser asli (Xvfb + headful Firefox), desktop 1440×900 + mobile 390×844, hasi
 
 ## 6. Verifikasi URL live setelah deploy
 
-<!-- diisi setelah deploy + live check -->
+Deploy: commit `4f857ee` di `https://github.com/lugatiogege-oss/dipa-hq` (main), Pages status **built**, `curl` live URL **HTTP 200**, dan `js/main.js` live mengandung `roofCheck`. Cek ulang URL live di browser asli (Xvfb + headful Firefox, `live-check-roof.js`, ~03:08 WIB):
+
+- **Desktop:** `__DIPA_READY=true`, 0 console error, 0 page error, 0 failed request, 0 external request; jam berdetak (03:08:28 → 03:08:31 WIB); 7 worker; `roofCheck` = **y 4,53** (atap hilang di live); `env()` tanpa `rotorAngle`; fountainJet 0,944 (bergerak); draw calls **303**, segitiga 38.120, FPS rata-rata 2,1 (llvmpipe); kualitas PERFORMANCE otomatis (render scale 0,85 — wajar di bawah llvmpipe); preset `top` tiba di pos [16,01, 20, 16,01] target [0, 4,2, 0]; nav: ‹ sembunyikan + ☰ muncul + ☰ buka lagi — semua benar.
+- **HP 390px:** `__DIPA_READY=true`, 0 console/page error, 0 failed request; `roofCheck` = **y 4,53**; draw calls **258**, segitiga 35.014, FPS rata-rata 11,4 (llvmpipe); nav: ‹ sembunyikan + ☰ terlihat + ☰ buka lagi — semua benar.
+- Screenshot live: `rebuild/screenshots/live-roof-desktop.png`, `live-roof-desktop-top.png` (interior lantai 2 terlihat dari atas, tanpa atap/helikopter), `live-roof-mobile.png`, `live-roof-mobile-nav-hidden.png`.
+
+**Catatan deploy:** saat sinkronisasi, `rsync --delete` sempat menghapus `.git` di `pages/` (folder staging bukan repo git yang dilindungi dari rsync). Dipulihkan tanpa kehilangan riwayat: `git init` + `git fetch origin` + `git reset origin/main` (working tree tidak disentuh), lalu commit di atas `3bb6696` dan push fast-forward normal — tidak ada force-push, tidak ada commit yang hilang. Pelajaran: rsync ke `pages/` harus selalu `--exclude .git`.

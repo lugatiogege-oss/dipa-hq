@@ -1,0 +1,93 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "ready": true,
+    "clockA": "03:08:28 WIB",
+    "clockB": "03:08:31 WIB",
+    "clockTicks": true,
+    "workers": 7,
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "perf": {
+      "calls": 303,
+      "triangles": 38120,
+      "geometries": 168,
+      "textures": 30,
+      "programs": 22
+    },
+    "fps": {
+      "current": 2.3,
+      "avg": 2.1,
+      "min": 1.2,
+      "samples": 13
+    },
+    "fountainJet": 0.9440025272220371,
+    "roofCheck": {
+      "y": 4.53
+    },
+    "envKeys": [
+      "doorPhase",
+      "doorOpen",
+      "fountainJet"
+    ],
+    "camTop": {
+      "pos": [
+        16.01,
+        20,
+        16.01
+      ],
+      "target": [
+        0,
+        4.2,
+        0
+      ]
+    },
+    "nav": {
+      "hiddenAfterCollapse": true,
+      "openNavShown": true,
+      "visibleAfterReopen": true
+    }
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "ready": true,
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "perf": {
+      "calls": 258,
+      "triangles": 35014,
+      "geometries": 140,
+      "textures": 26,
+      "programs": 10
+    },
+    "fps": {
+      "current": 12.3,
+      "avg": 11.4,
+      "min": 5.4,
+      "samples": 12
+    },
+    "roofCheck": {
+      "y": 4.53
+    },
+    "nav": {
+      "hiddenAfterCollapse": true,
+      "openNavVisible": true,
+      "visibleAfterReopen": true
+    }
+  }
+}
