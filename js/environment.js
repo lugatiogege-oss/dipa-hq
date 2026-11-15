@@ -1,30 +1,26 @@
 // DIPA HQ — environment.js
 // Environment animation system (Phase 3). All motion is delta-time
 // based and subtle — the page must stay light enough to share.
-// Animated: helicopter main + tail rotors, fountain jets + water,
-// helipad neon ring, entrance glow, night-city window twinkle,
-// workstation monitor activity (per-screen emissive pulse),
+// Animated: fountain jets + water, entrance glow, night-city window
+// twinkle, workstation monitor activity (per-screen emissive pulse),
 // mission-wall globe rotation, reception glass doors (periodic slide).
+// (Helicopter rotors + helipad neon ring were removed with the roof,
+// owner 2026-11-16 — no rotor/neonRing refs remain.)
 // NOTE: interior accent lights are owned by lighting.js (day/night
 // scaling) and are deliberately NOT touched here.
 export function createEnvironment(refs) {
-  const { rotorMain, rotorTail, fountain, neonRing, entranceGlow, cityMats, screens, globe, doors } = refs;
-  let rotorAngle = 0;
+  const { fountain, entranceGlow, cityMats, screens, globe, doors } = refs;
   let doorTimer = 0;
   let doorPhase = 'closed'; // closed -> opening -> open -> closing -> closed
   let doorOpen = 0; // 0 = shut, 1 = fully open
   // Perf fix: the pulse parts below touched ~60 materials every frame.
   // They now update at most every 0.1 s (10 Hz) — the eye cannot tell
   // the difference on a slow sine pulse, and the CPU churn drops ~10x.
-  // Rotor/door/globe stay per-frame (cheap transforms, visible motion).
+  // Door/globe stay per-frame (cheap transforms, visible motion).
   let pulseAcc = 0;
   let pulseEnabled = true;
 
   function update(dt, t) {
-    // helicopter rotors (visible spin)
-    if (rotorMain) { rotorMain.rotation.y += dt * 7.5; rotorAngle = rotorMain.rotation.y; }
-    if (rotorTail) rotorTail.rotation.x += dt * 12;
-
     // mission-wall globe: slow rotation
     if (globe) globe.rotation.y += dt * 0.25;
 
@@ -63,7 +59,6 @@ export function createEnvironment(refs) {
     }
 
     // neon / glow pulse (subtle)
-    if (neonRing) neonRing.material.emissiveIntensity = 1.2 + 0.35 * Math.sin(t * 1.8);
     if (entranceGlow) entranceGlow.intensity = 0.8 + 0.2 * Math.sin(t * 1.3);
 
     // night-city window twinkle (per texture group — see scene.js)
@@ -85,7 +80,6 @@ export function createEnvironment(refs) {
     update,
     setPulseEnabled: (v) => { pulseEnabled = !!v; },
     getState: () => ({
-      rotorAngle,
       doorPhase,
       doorOpen: +doorOpen.toFixed(2),
       fountainJet: fountain?.jet ? fountain.jet.scale.y : null,

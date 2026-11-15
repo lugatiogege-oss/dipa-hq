@@ -70,8 +70,7 @@ try {
     updateActivities({ [id]: state });
   });
   const environment = createEnvironment({
-    rotorMain: ext.rotorMain, rotorTail: ext.rotorTail,
-    fountain: ext.fountain, neonRing: ext.neonRing, entranceGlow: ext.entranceGlow,
+    fountain: ext.fountain, entranceGlow: ext.entranceGlow,
     cityMats: sceneCtx.cityMats,
     screens: [...f1.screens, ...f2.screens],
     globe: f1.globe, doors: f1.doors,
@@ -174,6 +173,17 @@ if (app) {
     setCEOHour: (h) => app.ceo.setHour(h),
     clearCEOHour: () => app.ceo.clearHour(),
     env: () => app.environment.getState(),
+    // Open-top proof (roof removed 2026-11-16): cast a ray straight down
+    // through the building centre (x 0, z 0 — the glass viewing strip).
+    // With the roof it hit the roof slab at y ~8.1; without it the first
+    // hit is the floor-2 interior (glass viewing floor / railing, y ~4.5).
+    roofCheck: () => {
+      const rc = new THREE.Raycaster(new THREE.Vector3(0, 30, 0), new THREE.Vector3(0, -1, 0));
+      rc.camera = app.sceneCtx.camera; // required: character name tags are Sprites, Sprite.raycast needs a camera
+      const hits = rc.intersectObjects(app.sceneCtx.scene.children, true)
+        .filter(h => !h.object.isSprite); // ignore floating name tags
+      return hits.length ? { y: +hits[0].point.y.toFixed(2) } : null;
+    },
     setAgentName: (id, name) => {
       const a = app.actors.find(x => x.id === id);
       if (!a || a.isCEO) return false;

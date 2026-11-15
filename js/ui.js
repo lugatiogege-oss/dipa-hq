@@ -14,8 +14,7 @@ export function toast(msg, ms = 2600) {
   window._toastTimer = setTimeout(() => { el.style.display = 'none'; }, ms);
 }
 
-export function initPanels() {
-  const $ = id => document.getElementById(id);
+export function initPanels() {  const $ = id => document.getElementById(id);
   for (const [panel, openBtn] of [['leftPanel', 'openLeft'], ['rightPanel', 'openRight']]) {
     const p = $(panel), b = $(openBtn);
     if (!p || !b) continue;
@@ -25,7 +24,44 @@ export function initPanels() {
   }
 }
 
+// --- Nav rail visibility (shared by initNav + initBottomBar) ---
+// One function for every toggle path so the rail and the floating ☰
+// reopen button can never drift out of sync.
+const NAV_HIDDEN_KEY = 'dipa-hq-nav-hidden';
+export function setNavHidden(hidden, save = true) {
+  const rail = document.getElementById('navRail');
+  const openNav = document.getElementById('openNav');
+  if (!rail) return hidden;
+  rail.classList.toggle('rail-hidden', hidden);
+  if (openNav) openNav.classList.toggle('show', hidden);
+  if (save) { try { localStorage.setItem(NAV_HIDDEN_KEY, hidden ? '1' : '0'); } catch (_) {} }
+  return hidden;
+}
+export function navIsHidden() {
+  const rail = document.getElementById('navRail');
+  return !!rail && rail.classList.contains('rail-hidden');
+}
+
 export function initNav(cam) {
+  // --- Nav rail hide/show (owner report 2026-11-16 ~02:56 WIB: the rail
+  // covers most of the phone screen and could not be hidden). Three ways
+  // to toggle, all through setNavHidden so the rail + floating reopen
+  // button always stay in sync: (1) the ‹ button on the rail itself,
+  // (2) the Menu button in the bottom bar (initBottomBar), (3) the
+  // floating ☰ button at the rail's spot. State persists in localStorage
+  // (dipa-hq-nav-hidden), like the quality setting.
+  const rail = document.getElementById('navRail');
+  const openNav = document.getElementById('openNav');
+  const collapseBtn = document.getElementById('navCollapse');
+  let storedHidden = false;
+  try { storedHidden = localStorage.getItem(NAV_HIDDEN_KEY) === '1'; } catch (_) {}
+  setNavHidden(storedHidden, false);
+  if (collapseBtn) collapseBtn.onclick = () => {
+    setNavHidden(true);
+    toast('Navigasi disembunyikan — ketuk ☰ di kiri atas untuk membuka lagi');
+  };
+  if (openNav) openNav.onclick = () => setNavHidden(false);
+
   document.querySelectorAll('[data-nav]').forEach(el => {
     el.addEventListener('click', () => {
       const action = el.dataset.nav;
@@ -85,9 +121,8 @@ export function initBottomBar(cam) {
   if (rep) rep.onclick = () => toast('Fitur Report belum tersedia — direncanakan Fase 5');
   const menu = $('menuBtn');
   if (menu) menu.onclick = () => {
-    const rail = document.getElementById('navRail');
-    if (rail) rail.classList.toggle('rail-hidden');
-    toast(rail && rail.classList.contains('rail-hidden') ? 'Navigasi disembunyikan' : 'Navigasi ditampilkan');
+    const hidden = setNavHidden(!navIsHidden());
+    toast(hidden ? 'Navigasi disembunyikan — ketuk ☰ di kiri atas untuk membuka lagi' : 'Navigasi ditampilkan');
   };
 }
 

@@ -1,0 +1,359 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "dialogs": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "actTags": [
+        "WORKING",
+        "THINKING",
+        "WORKING",
+        "IDLE",
+        "WORKING",
+        "THINKING",
+        "WORKING"
+      ],
+      "oldNamesPresent": false,
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true,
+      "simulationLabel": true,
+      "divisionsRow": "DivisionsBelum diatur",
+      "clockText": "03:02:08 WIB",
+      "phaseText": "NIGHT · WIB"
+    },
+    "activitiesT0": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "WORKING",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "ceoT0": "SLEEP",
+    "typing": {
+      "t0": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "IDLE",
+        "agent-4": "WORKING",
+        "agent-5": "IDLE",
+        "agent-6": "WORKING",
+        "agent-7": "THINKING"
+      },
+      "t2": {
+        "agent-1": "WORKING",
+        "agent-2": "WORKING",
+        "agent-3": "IDLE",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "t4": {
+        "agent-1": "IDLE",
+        "agent-2": "WORKING",
+        "agent-3": "WALKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      }
+    },
+    "walkCheck": {
+      "before": {
+        "x": -1,
+        "z": 1.15,
+        "activity": "WORKING"
+      },
+      "after": {
+        "x": -2.5,
+        "z": -0.5,
+        "activity": "INTERACTING"
+      },
+      "moved": 2.229910312097776
+    },
+    "thinking": {
+      "t0": {
+        "agent-1": "THINKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "t2": {
+        "agent-1": "WORKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      }
+    },
+    "activityChange": {
+      "before": {
+        "agent-1": "WORKING",
+        "agent-2": "WORKING",
+        "agent-3": "IDLE",
+        "agent-4": "THINKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "THINKING"
+      },
+      "after": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "WORKING",
+        "agent-4": "THINKING",
+        "agent-5": "IDLE",
+        "agent-6": "IDLE",
+        "agent-7": "WORKING"
+      },
+      "changed": true
+    },
+    "ceo": {
+      "point": {
+        "arrived": true,
+        "waitedMs": 8091,
+        "pos": {
+          "x": 0,
+          "z": -3.5,
+          "activity": "IDLE"
+        },
+        "behaviour": "POINT",
+        "routine": "Memeriksa papan info"
+      },
+      "coffee": {
+        "arrived": true,
+        "waitedMs": 12102,
+        "pos": {
+          "x": -7.1,
+          "z": 2.6,
+          "activity": "IDLE"
+        },
+        "behaviour": "COFFEE",
+        "routine": "Istirahat kopi"
+      },
+      "greet": {
+        "arrived": true,
+        "waitedMs": 8085,
+        "pos": {
+          "x": 0.39,
+          "z": 0.77,
+          "activity": "IDLE"
+        },
+        "behaviour": "GREET",
+        "routine": "Menyapa agent"
+      },
+      "sleep": {
+        "behaviour": "SLEEP",
+        "routine": "Sleeping",
+        "pos": {
+          "x": -6,
+          "z": -3.4,
+          "activity": "IDLE"
+        }
+      }
+    },
+    "openTop": {
+      "roofCheck": {
+        "y": 4.53
+      },
+      "envKeys": [
+        "doorPhase",
+        "doorOpen",
+        "fountainJet"
+      ],
+      "roofGone": true,
+      "noRotor": true,
+      "roofCheck2": {
+        "y": 4.53
+      },
+      "camTop": {
+        "pos": [
+          15.99,
+          20,
+          16
+        ],
+        "target": [
+          0,
+          4.2,
+          0
+        ]
+      }
+    },
+    "fountain": {
+      "t0": {
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 0.8608255023835188
+      },
+      "t2": {
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 0.9110000405682288
+      },
+      "t4": {
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.0347289995678635
+      },
+      "changed": true
+    },
+    "leftPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "rightPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "leftCloseKeepsRightOpen": true,
+    "characterTap": {
+      "proj": {
+        "world": {
+          "x": -7,
+          "z": -3.65,
+          "activity": "THINKING"
+        },
+        "screen": {
+          "x": 589.7,
+          "y": 423.7,
+          "behind": false
+        }
+      },
+      "toast": {
+        "display": "block",
+        "text": "Agent 1 · Research Lab · THINKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    },
+    "clockTicks": {
+      "clockA": "03:04:53 WIB",
+      "clockB": "03:04:55 WIB",
+      "changed": true
+    },
+    "settingsMenuVisible": true,
+    "qualityToast": "Kualitas grafis: PERFORMANCE",
+    "upgradeToast": "Fitur Upgrade belum tersedia — direncanakan Fase 5",
+    "reportToast": "Fitur Report belum tersedia — direncanakan Fase 5",
+    "navToggle": {
+      "initiallyVisible": true,
+      "hiddenAfterCollapse": true,
+      "openNavShown": true,
+      "visibleAfterReopen": true,
+      "hiddenAfterMenu": true,
+      "visibleAfterMenu2": true
+    },
+    "fpsDesktop": {
+      "current": 1.8,
+      "avg": 2.3,
+      "min": 1.7,
+      "samples": 30
+    },
+    "perfDesktop": {
+      "calls": 303,
+      "triangles": 38000,
+      "geometries": 170,
+      "textures": 30,
+      "programs": 22
+    },
+    "finalActivities": {
+      "agent-1": "THINKING",
+      "agent-2": "WORKING",
+      "agent-3": "THINKING",
+      "agent-4": "WORKING",
+      "agent-5": "THINKING",
+      "agent-6": "WORKING",
+      "agent-7": "WORKING"
+    }
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true
+    },
+    "activities": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "IDLE",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "fpsMobile": {
+      "current": 10.8,
+      "avg": 10.3,
+      "min": 4.6,
+      "samples": 12
+    },
+    "perfMobile": {
+      "calls": 258,
+      "triangles": 35038,
+      "geometries": 140,
+      "textures": 26,
+      "programs": 10
+    },
+    "leftCloseWorks": true,
+    "leftReopenWorks": true,
+    "nav": {
+      "initiallyVisible": true,
+      "hiddenAfterCollapse": true,
+      "openNavVisible": true,
+      "visibleAfterReopen": true,
+      "hiddenAfterMenu": true,
+      "visibleAfterMenu2": true,
+      "stored": "0"
+    },
+    "roofCheckMobile": {
+      "y": 4.53
+    }
+  }
+}

@@ -37,6 +37,13 @@
 /* ---------- left nav rail (concept) ---------- */
 #navRail{position:fixed;z-index:4;left:14px;top:96px;display:flex;flex-direction:column;gap:4px;padding:8px;width:150px}
 #navRail.rail-hidden{display:none}
+#navRail .nav-head{display:flex;justify-content:flex-end;margin:-2px -2px 2px}
+#navCollapse{border:1px solid var(--line);border-radius:8px;background:#0c2a44;color:var(--txt);padding:3px 9px;font-size:12px;cursor:pointer;line-height:1}
+#navCollapse:hover{background:#123c5e}
+/* floating reopen button — appears at the rail's spot whenever the rail is hidden, so the nav never disappears without a way back */
+#openNav{display:none;position:fixed;z-index:5;left:14px;top:96px;border:1px solid var(--line);border-radius:11px;background:var(--glass);backdrop-filter:blur(14px);color:var(--txt);padding:10px 12px;font-size:15px;cursor:pointer;box-shadow:0 10px 32px #0005}
+#openNav.show{display:block}
+#openNav:active{transform:scale(.96)}
 .nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--txt);font-size:12px;cursor:pointer;text-align:left}
 .nav-item .ico{font-size:15px;width:20px;text-align:center}
 .nav-item:hover{background:#0c2a44}
@@ -89,6 +96,7 @@
  #navRail{display:none;top:64px;left:8px;background:var(--glass);border:1px solid var(--line);border-radius:13px;backdrop-filter:blur(16px)}
  #navRail.rail-hidden{display:none}
  #navRail:not(.rail-hidden){display:flex}
+ #openNav{left:8px;top:64px;padding:9px 11px;font-size:14px}
  .panel{top:auto;bottom:84px;width:calc(50% - 12px);max-height:32vh;padding:9px;border-radius:13px}
  .left{left:8px}.right{right:8px}
  .panel h2{font-size:12px;margin:4px 0 7px}.eyebrow{font-size:7px}.worker{padding:5px 0;gap:6px}.avatar{width:22px;height:22px;font-size:9px}.worker b{font-size:9px}.worker small{font-size:7px}.tag{font-size:7px;padding:2px 4px}.row{font-size:8px;margin:6px 0}.section{margin-top:8px;padding-top:7px}.btn{font-size:8px;padding:6px 7px}
@@ -133,6 +141,7 @@
 </header>
 
 <nav id="navRail" class="glass" aria-label="Navigasi utama">
+  <div class="nav-head"><button id="navCollapse" title="Sembunyikan navigasi" aria-label="Sembunyikan navigasi">‹</button></div>
   <button class="nav-item active" data-nav="overview"><span class="ico">🏠</span>Overview</button>
   <button class="nav-item" data-nav="agents"><span class="ico">👥</span>Agents</button>
   <button class="nav-item" data-nav="buildings"><span class="ico">🏢</span>Buildings</button>
@@ -177,6 +186,7 @@
   <div class="section"><div class="row"><span class="muted">Owner Mode</span><span class="tag">NOT IMPLEMENTED</span></div><small class="muted">Preview ini belum terhubung ke backend atau autentikasi. Owner Mode membutuhkan backend — bukan password di browser.</small></div>
 </aside>
 <button class="open l" id="openLeft">☰ Agents</button><button class="open r" id="openRight">☰ Info</button>
+<button id="openNav" title="Tampilkan navigasi" aria-label="Tampilkan navigasi">☰</button>
 
 <div class="brand-bl glass"><div class="logo">D</div><div><b>DIPA NEXUS</b><small>AI OPERATIONS CENTER</small></div></div>
 
@@ -196,7 +206,7 @@
   <button data-view="floor2">Focus: Floor 2 — Executive</button>
   <button data-view="ceo">Focus: CEO Office</button>
   <button data-view="entrance">Focus: Entrance</button>
-  <button data-view="roof">Focus: Roof &amp; Helipad</button>
+  <button data-view="top">Focus: Top View — Open Interior</button>
 </div>
 
 <div class="popover" id="settingsMenu">

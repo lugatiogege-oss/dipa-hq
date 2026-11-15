@@ -1,7 +1,10 @@
 // DIPA HQ — exterior.js
-// Outside the building: rooftop helipad + helicopter, fountain, garden,
-// entrance canopy/columns/steps and the D identity.
-// Nothing here is removed without a technical reason (owner affirmation §2).
+// Outside the building: fountain, garden, entrance canopy/columns/steps
+// and the D identity.
+// NOTE (owner 2026-11-16 ~02:55 WIB): the rooftop helipad + helicopter
+// were REMOVED entirely — the roof is gone (open-top dollhouse) and the
+// helicopter on top was distracting. Not relocated, no replacement.
+// Nothing else here is removed without a technical reason (owner affirmation §2).
 import * as THREE from 'three';
 import { M, box, cyl, sphere, glowLight, instancedGeo } from './materials.js';
 
@@ -15,86 +18,9 @@ function tree(parent, x, z, s = 1) {
 }
 
 export function buildExterior(scene) {
-  // ---------- Rooftop helipad + helicopter (roof right side) ----------
-  const pad = new THREE.Group();
-  pad.position.set(5.5, 8.16, -2.5);
-  scene.add(pad);
-  cyl(pad, 3.1, 3.1, 0.14, M.deep, 0, 0.07, 0, 40);
-  cyl(pad, 2.9, 2.9, 0.05, new THREE.MeshStandardMaterial({ color: 0x1c3346, roughness: 0.5 }), 0, 0.16, 0, 40);
-  // yellow ring + H marking (canvas texture on a circle plane)
-  const c = document.createElement('canvas');
-  c.width = 256; c.height = 256;
-  const ctx = c.getContext('2d');
-  ctx.clearRect(0, 0, 256, 256);
-  ctx.strokeStyle = '#ffd94d'; ctx.lineWidth = 10;
-  ctx.beginPath(); ctx.arc(128, 128, 112, 0, Math.PI * 2); ctx.stroke();
-  ctx.fillStyle = '#ffd94d';
-  ctx.fillRect(88, 58, 18, 140); ctx.fillRect(150, 58, 18, 140); ctx.fillRect(88, 119, 80, 18);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const hMark = new THREE.Mesh(
-    new THREE.CircleGeometry(2.85, 40),
-    new THREE.MeshBasicMaterial({ map: tex, transparent: true }),
-  );
-  hMark.rotation.x = -Math.PI / 2;
-  hMark.position.y = 0.2;
-  pad.add(hMark);
-  // neon ring around the pad (own material clone so the environment
-  // animator can pulse it without touching other violet-glow objects)
-  const ringMat = M.violetGlow.clone();
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(3.15, 0.05, 8, 48),
-    ringMat,
-  );
-  ring.rotation.x = Math.PI / 2;
-  ring.position.y = 0.22;
-  pad.add(ring);
-
-  // Helicopter (static in Phase 2; rotor animation is Phase 3)
-  const heli = new THREE.Group();
-  heli.position.set(5.5, 9.0, -2.5);
-  heli.rotation.y = -0.5;
-  scene.add(heli);
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.85, 1.6, 6, 12),
-    new THREE.MeshStandardMaterial({ color: 0x93a9c4, metalness: 0.55, roughness: 0.35 }));
-  body.rotation.z = Math.PI / 2;
-  body.position.y = 0.5;
-  body.castShadow = true;
-  heli.add(body);
-  const nose = sphere(heli, 0.7, M.glass, 1.35, 0.55, 0, 1, 0.9, 0.9);
-  nose.material = M.glass;
-  // tail boom + tail rotor
-  const boom = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.3, 2.6, 8),
-    new THREE.MeshStandardMaterial({ color: 0x93a9c4, metalness: 0.55, roughness: 0.35 }));
-  boom.rotation.z = Math.PI / 2;
-  boom.position.set(-2.0, 0.65, 0);
-  boom.castShadow = true;
-  heli.add(boom);
-  const tailFin = box(heli, 0.08, 0.9, 0.5, M.violet, -3.2, 0.9, 0, { shadow: false });
-  // tail rotor spins around the boom (x) axis
-  const rotorTail = new THREE.Group();
-  rotorTail.position.set(-3.3, 0.9, 0.25);
-  heli.add(rotorTail);
-  box(rotorTail, 0.05, 1.1, 0.08, M.silver, 0, 0, 0, { shadow: false });
-  // main rotor mast + blades (blades live in a spinning group)
-  cyl(heli, 0.09, 0.09, 0.5, M.silver, 0, 1.5, 0, 8);
-  const rotorMain = new THREE.Group();
-  rotorMain.position.set(0, 1.78, 0);
-  heli.add(rotorMain);
-  box(rotorMain, 5.6, 0.05, 0.28, M.silver, 0, 0, 0, { shadow: false });
-  box(rotorMain, 0.28, 0.05, 5.6, M.silver, 0, 0, 0, { shadow: false });
-  // skids
-  for (const dz of [-0.6, 0.6]) {
-    const skid = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 2.6, 6), M.silver);
-    skid.rotation.z = Math.PI / 2;
-    skid.position.set(0, -0.35, dz);
-    heli.add(skid);
-  }
-  // cabin accent stripe + nav lights
-  box(heli, 1.9, 0.12, 0.1, M.cyanGlow, 0.2, 0.85, 0.82, { shadow: false });
-  sphere(heli, 0.06, M.cyanGlow, 1.9, 0.6, 0, 1, 1, 1);
-  // Perf fix: the helicopter point light is dropped (roof is dark anyway;
-  // the pad neon ring + city lights keep the silhouette readable).
+  // ---------- NO HELIPAD / NO HELICOPTER (owner 2026-11-16) ----------
+  // The rooftop helipad + helicopter used to live here. Removed with the
+  // roof — not relocated, no replacement.
 
   // ---------- Fountain (front centre, z ~11.5) ----------
   const fount = new THREE.Group();
@@ -166,9 +92,7 @@ export function buildExterior(scene) {
   instancedGeo(scene, new THREE.SphereGeometry(1, 12, 10), M.plant, EX.crowns);
 
   return {
-    rotorMain, rotorTail,
     fountain: { jet, crown, sideL: sideJets[0], sideR: sideJets[1], water: M.water },
-    neonRing: ring,
     entranceGlow,
   };
 }

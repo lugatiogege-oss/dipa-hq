@@ -11,14 +11,14 @@ v2.2 was NOT used as a foundation (divergent branch, see Phase 1 report).
 
 - **Full two-floor glass building** (not a mezzanine): Floor 1 Operations
   (9 areas) + Floor 2 Executive (5 areas), staircase, glass viewing floor.
-- **Exterior:** rooftop helipad + helicopter, fountain, futuristic night-city
-  backdrop, garden, entrance with D logo.
+- **Exterior:** open-top dollhouse (no roof — interior visible from above),
+  fountain, futuristic night-city backdrop, garden, entrance with D logo.
 - **Characters:** 7 generic worker figures (Agent 1–7, placeholders) + CEO
   DFNX PRIME. Jointed rigs with a modular animation system: typing,
   thinking, idle, walking, sitting, task transitions, interaction.
   CEO: read, supervise, inspect, point, phone, coffee, greet + sleep
   00:00–07:00 WIB (never disappears while resting).
-- **Environment animation:** helicopter rotor spins, fountain jets pulse,
+- **Environment animation:** fountain jets pulse,
   night-city windows twinkle, workstation monitors flicker with activity,
   mission globe rotates, reception doors slide open periodically.
 - **Activity system:** IDLE / WORKING / THINKING / WALKING / INTERACTING /
@@ -89,15 +89,15 @@ js/
   config.js           identity, palette, layout, day/night windows
   materials.js        shared materials + geometry/sign helpers
   scene.js            renderer/scene/camera/controls + night-city backdrop
-  building.js         shell: floors, glass, columns, roof, stairs
+  building.js         shell: floors, glass, columns, stairs (open-top, no roof)
   floor1.js           Floor 1 rooms + furniture (9 areas)
   floor2.js           Floor 2 rooms + furniture (5 areas)
-  exterior.js         helipad + helicopter, fountain, garden, entrance
+  exterior.js         fountain, garden, entrance (no helipad/helicopter)
   characters.js       character factory + placement + name tags (rig-based)
   rig.js              jointed character rig (shared by agents + CEO)
   animation.js        animation engine: poses + animator + stepMove
   activity.js         agent activity state machine (SIMULATION)
-  environment.js      environment animation (rotor, fountain, city, screens)
+  environment.js      environment animation (fountain, city, screens, doors, globe)
   ceo.js              CEO behaviour controller (read/supervise/inspect/
                       point/phone/coffee/greet/sleep)
   lighting.js         real-time WIB day/night system
@@ -112,7 +112,7 @@ js/
 
 - Drag: rotate · Scroll / pinch: zoom · Click/tap a character: details
 - Camera button / panel: Reset, Zoom +/−, Focus (Floor 1, Floor 2,
-  Entrance, Roof & Helipad)
+  Entrance, Top View — Open Interior)
 - Left nav: Overview / Agents / Buildings / Research / Missions / Analytics
   (camera focus shortcuts) / Settings (quality)
 - Panels close and reopen independently (☰ Agents / ☰ Info buttons).

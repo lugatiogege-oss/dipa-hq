@@ -100,8 +100,9 @@ export const LAYOUT = {
   floor1Top: 4.2,         // floor 1 ceiling beams
   floor2SlabY: 4.5,       // floor 2 slab centre
   floor2Y: 4.65,          // floor 2 surface
-  floor2Top: 7.9,         // roof beams
-  roofY: 8.05,            // roof slab centre
+  // (floor2Top / roofY removed with the roof, owner 2026-11-16 — the
+  // building is open-top now; the highest shell element is the fascia
+  // sign on the floor 2 front wall, y ~8.26)
 };
 
 // --- Day/night windows, Asia/Jakarta (assignment §6) ---

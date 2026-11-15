@@ -1,0 +1,60 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "ready": true,
+    "clockA": "02:48:26 WIB",
+    "clockB": "02:48:30 WIB",
+    "clockTicks": true,
+    "workers": 7,
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "perf": {
+      "calls": 320,
+      "triangles": 40416,
+      "geometries": 184,
+      "textures": 31,
+      "programs": 22
+    },
+    "fps": {
+      "current": 2.5,
+      "avg": 2,
+      "min": 1.2,
+      "samples": 12
+    },
+    "fountainJet": 0.9493872643405358
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "ready": true,
+    "quality": {
+      "level": "PERFORMANCE",
+      "pixelRatio": 0.85,
+      "shadows": false,
+      "reducedScale": true,
+      "auto": true
+    },
+    "perf": {
+      "calls": 271,
+      "triangles": 36630,
+      "geometries": 153,
+      "textures": 27,
+      "programs": 10
+    },
+    "fps": {
+      "current": 13,
+      "avg": 10.4,
+      "min": 5.7,
+      "samples": 12
+    }
+  }
+}

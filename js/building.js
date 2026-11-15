@@ -1,8 +1,14 @@
 // DIPA HQ — building.js
 // The building shell: foundation, TWO FULL floors (not a mezzanine),
-// glass walls, columns/beams, roof, staircase and glass railings.
+// glass walls, columns/beams, staircase and glass railings.
 // Floor 2 is the same footprint as Floor 1 (21.3 × 13.3) — Phase 1 found
 // v3's half-depth second floor read as a mezzanine; that is fixed here.
+//
+// OPEN TOP (owner decision 2026-11-16 ~02:55 WIB): the roof was REMOVED —
+// the building is now an open-top dollhouse/cutaway so the interior is
+// visible from above. No roof slab, no roof beams, no helipad, no
+// helicopter (those lived in exterior.js and are gone too). The fascia
+// sign now caps the front wall instead of the roof edge.
 //
 // Perf fix: the shell used to be ~200 separate box meshes (one draw call
 // each). Static boxes are now collected per material and emitted as ONE
@@ -86,11 +92,10 @@ export function buildShell(scene) {
   b('glassDark', 9.5, 2.8, 0.09, -5.75, 6.1, -2);
   b('glassDark', 9.5, 2.8, 0.09, 5.75, 6.1, -2);
   b('glassDark', 0.1, 2.8, 8.5, -1, 6.1, 2.25);
-  // Roof outline beams (violet) + roof slab (thin, full footprint)
-  for (const x of [-10.6, 0, 10.6]) b('violet', 0.18, 0.18, 13.4, x, 7.9, 0);
-  for (const z of [-6.6, 6.6]) b('violet', 21.2, 0.18, 0.18, 0, 7.9, z);
-  b('deep', W, 0.18, D, 0, LAYOUT.roofY, 0);
-  b('floorAlt', W - 0.4, 0.06, D - 0.4, 0, LAYOUT.roofY + 0.12, 0);
+  // --- NO ROOF (owner 2026-11-16): the roof outline beams + roof slab
+  // used to cap the building here. Removed so the building reads as an
+  // open-top dollhouse — the interior is visible from above. The floor 2
+  // slab (above) stays; only the TOP roof is gone.
 
   // --- Structural columns (both floors, corners + mids) ---
   for (const [x, z] of [[-10.4, -6.4], [10.4, -6.4], [-10.4, 6.4], [10.4, 6.4], [0, -6.4], [0, 6.4], [-5.2, -6.4], [5.2, -6.4], [-5.2, 6.4], [5.2, 6.4]]) {
@@ -113,8 +118,10 @@ export function buildShell(scene) {
   for (let x = 8.2; x <= 9.8; x += 0.8) b('cyan', 0.06, 1.0, 0.06, x, 5.15, -1.2);
   b('glass', 1.8, 0.06, 0.06, 9.0, 5.65, -1.2);
 
-  // --- Building fascia sign (on the roof front edge — clear of beams) ---
-  sign(scene, 'DIPA NEXUS', 0, 8.05, 6.72, '#62e5ff', 4.6, 0.62, true);
+  // --- Building fascia sign (on the top edge of the floor 2 front wall —
+  // the roof edge it used to sit on is gone; the front glass wall tops
+  // out at y 7.85, so the sign straddles it, anchored by the columns) ---
+  sign(scene, 'DIPA NEXUS', 0, 7.95, 6.72, '#62e5ff', 4.6, 0.62, true);
 
   // --- Decorative ceiling light strips ---
   for (const x of [-9, -3, 3, 9]) {
