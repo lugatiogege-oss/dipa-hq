@@ -1,0 +1,281 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "dialogs": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · R&D Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Area",
+        "Unassigned · Collaboration Area",
+        "Unassigned · Collaboration Area"
+      ],
+      "actTags": [
+        "WORKING",
+        "THINKING",
+        "WORKING",
+        "IDLE",
+        "WORKING",
+        "THINKING",
+        "WORKING"
+      ],
+      "oldNamesPresent": false,
+      "simulationLabel": true,
+      "divisionsRow": "DivisionsBelum diatur",
+      "clockText": "00:57:20 WIB",
+      "phaseText": "NIGHT · WIB"
+    },
+    "activitiesT0": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "WORKING",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "ceoT0": "SLEEP",
+    "positionsT0": {
+      "agent-1": {
+        "x": -7,
+        "z": -3.65,
+        "activity": "WORKING"
+      },
+      "agent-2": {
+        "x": 0.5,
+        "z": -3.65,
+        "activity": "THINKING"
+      },
+      "agent-3": {
+        "x": -1,
+        "z": 1.15,
+        "activity": "WORKING"
+      },
+      "agent-4": {
+        "x": 7.5,
+        "z": 1.15,
+        "activity": "IDLE"
+      },
+      "agent-5": {
+        "x": -8,
+        "z": 0.95,
+        "activity": "WORKING"
+      },
+      "agent-6": {
+        "x": -6.2,
+        "z": 1.95,
+        "activity": "THINKING"
+      },
+      "agent-7": {
+        "x": -9.6,
+        "z": 1.95,
+        "activity": "WORKING"
+      },
+      "ceo": {
+        "x": -6,
+        "z": -3.4,
+        "activity": "IDLE"
+      }
+    },
+    "environmentDelta": {
+      "envA": {
+        "rotorAngle": 22.41,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.127132843418393
+      },
+      "envB": {
+        "rotorAngle": 26.16,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.1391493372837322
+      },
+      "rotorMoved": true,
+      "fountainChanged": true
+    },
+    "activitiesAfterTyping": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "IDLE",
+      "agent-4": "WORKING",
+      "agent-5": "IDLE",
+      "agent-6": "WORKING",
+      "agent-7": "THINKING"
+    },
+    "thinkingForced": {
+      "agent-1": "THINKING",
+      "agent-2": "THINKING",
+      "agent-3": "IDLE",
+      "agent-4": "WORKING",
+      "agent-5": "IDLE",
+      "agent-6": "WORKING",
+      "agent-7": "THINKING"
+    },
+    "walkCheck": {
+      "before": {
+        "x": -1,
+        "z": 1.15,
+        "activity": "IDLE"
+      },
+      "after": {
+        "x": -2.22,
+        "z": -0.19,
+        "activity": "WALKING"
+      },
+      "moved": 1.8121810064118873
+    },
+    "ceoRead": "READ",
+    "ceoPoint": "READ",
+    "ceoCoffee": "READ",
+    "ceoGreet": "READ",
+    "ceoInspect": "READ",
+    "ceoBackToSleep": "SLEEP",
+    "rotorCheck": {
+      "rotA": 233.82000000000002,
+      "rotB": 237.88500000000002,
+      "moved": true
+    },
+    "envFinal": {
+      "rotorAngle": 295.9575,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.917080686338275
+    },
+    "activitySamples": {
+      "sampleA": {
+        "agent-1": "WORKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "THINKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "THINKING"
+      },
+      "sampleB": {
+        "agent-1": "IDLE",
+        "agent-2": "THINKING",
+        "agent-3": "IDLE",
+        "agent-4": "THINKING",
+        "agent-5": "THINKING",
+        "agent-6": "WORKING",
+        "agent-7": "THINKING"
+      },
+      "distinctA": [
+        "WORKING",
+        "THINKING"
+      ],
+      "distinctB": [
+        "IDLE",
+        "THINKING",
+        "WORKING"
+      ]
+    },
+    "renameProof": {
+      "renameOk": true,
+      "renamedLabel": "Test Name",
+      "restoreOk": true,
+      "restoredLabel": "Agent 1"
+    },
+    "fpsDesktop": {
+      "current": 0.5,
+      "avg": 0.5,
+      "min": 0.2,
+      "samples": 30
+    },
+    "perfDesktop": {
+      "calls": 1434,
+      "triangles": 78086,
+      "geometries": 719
+    },
+    "leftPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "rightPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "leftCloseKeepsRightOpen": true,
+    "characterTap": null,
+    "clockTicks": {
+      "clockA": "01:04:42 WIB",
+      "clockB": "01:04:44 WIB",
+      "changed": true
+    },
+    "settingsMenuVisible": true,
+    "qualityToast": "Kualitas grafis: PERFORMANCE",
+    "upgradeToast": "Fitur Upgrade belum tersedia — direncanakan Fase 5",
+    "reportToast": "Fitur Report belum tersedia — direncanakan Fase 5",
+    "finalActivities": {
+      "agent-1": "WORKING",
+      "agent-2": "WORKING",
+      "agent-3": "WORKING",
+      "agent-4": "WALKING",
+      "agent-5": "THINKING",
+      "agent-6": "WALKING",
+      "agent-7": "WORKING"
+    }
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "actTags": [
+        "WORKING",
+        "THINKING",
+        "WORKING",
+        "IDLE",
+        "IDLE",
+        "THINKING",
+        "WORKING"
+      ]
+    },
+    "activities": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "IDLE",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "fpsMobile": {
+      "current": 1.9,
+      "avg": 1.7,
+      "min": 1,
+      "samples": 12
+    },
+    "perfMobile": {
+      "calls": 1011,
+      "triangles": 50976,
+      "geometries": 496
+    },
+    "leftCloseWorks": true,
+    "leftReopenWorks": true
+  }
+}

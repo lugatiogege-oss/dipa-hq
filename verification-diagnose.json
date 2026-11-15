@@ -1,0 +1,277 @@
+{
+  "consoleErrors": [],
+  "pageErrors": [],
+  "pickCount": 138,
+  "cameraStart": {
+    "pos": [
+      22,
+      17,
+      26
+    ],
+    "target": [
+      0,
+      4.1,
+      0
+    ]
+  },
+  "cameraAfterReset": {
+    "pos": [
+      22,
+      17,
+      26
+    ],
+    "target": [
+      0,
+      4.1,
+      0
+    ]
+  },
+  "tapTests": [
+    {
+      "id": "agent-1",
+      "proj": {
+        "world": {
+          "x": -7,
+          "z": -3.65,
+          "activity": "WORKING"
+        },
+        "screen": {
+          "x": 633.4,
+          "y": 419.7,
+          "behind": false
+        }
+      },
+      "toast": {
+        "display": "block",
+        "text": "Agent 1 · R&D Lab · WORKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    },
+    {
+      "id": "agent-3",
+      "proj": {
+        "world": {
+          "x": -1,
+          "z": 1.15,
+          "activity": "IDLE"
+        },
+        "screen": {
+          "x": 668,
+          "y": 506.1,
+          "behind": false
+        }
+      },
+      "toast": {
+        "display": "block",
+        "text": "Agent 3 · Main Operations Floor · IDLE · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    },
+    {
+      "id": "ceo",
+      "proj": {
+        "world": {
+          "x": -6,
+          "z": -3.4,
+          "activity": "IDLE"
+        },
+        "screen": {
+          "x": 646.7,
+          "y": 286,
+          "behind": false
+        }
+      },
+      "toast": {
+        "display": "none",
+        "text": "Agent 3 · Main Operations Floor · IDLE · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    }
+  ],
+  "doorSamples": [
+    {
+      "rotorAngle": 74.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.0469387225698685
+    },
+    {
+      "rotorAngle": 82.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1152038630913155
+    },
+    {
+      "rotorAngle": 89.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1398820955865285
+    },
+    {
+      "rotorAngle": 97.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.0512497554979452
+    },
+    {
+      "rotorAngle": 108.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8687208520528031
+    },
+    {
+      "rotorAngle": 115.8675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8797446671927096
+    },
+    {
+      "rotorAngle": 123.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9417045843470313
+    },
+    {
+      "rotorAngle": 130.8675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1170968502817629
+    },
+    {
+      "rotorAngle": 142.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9925196726072597
+    },
+    {
+      "rotorAngle": 149.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9107739539098172
+    },
+    {
+      "rotorAngle": 157.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8726632868569127
+    },
+    {
+      "rotorAngle": 168.3675,
+      "doorPhase": "opening",
+      "doorOpen": 0,
+      "fountainJet": 1.0168932545993137
+    },
+    {
+      "rotorAngle": 175.8675,
+      "doorPhase": "open",
+      "doorOpen": 1,
+      "fountainJet": 1.139472146881905
+    },
+    {
+      "rotorAngle": 183.3675,
+      "doorPhase": "open",
+      "doorOpen": 1,
+      "fountainJet": 1.0343503370268308
+    },
+    {
+      "rotorAngle": 190.8675,
+      "doorPhase": "open",
+      "doorOpen": 1,
+      "fountainJet": 0.9304756562675621
+    },
+    {
+      "rotorAngle": 202.1175,
+      "doorPhase": "open",
+      "doorOpen": 1,
+      "fountainJet": 0.8704510573941351
+    },
+    {
+      "rotorAngle": 209.6175,
+      "doorPhase": "open",
+      "doorOpen": 1,
+      "fountainJet": 0.9973141155634754
+    },
+    {
+      "rotorAngle": 217.1175,
+      "doorPhase": "closing",
+      "doorOpen": 1,
+      "fountainJet": 1.1037048533431681
+    },
+    {
+      "rotorAngle": 224.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1307093008692588
+    },
+    {
+      "rotorAngle": 235.8675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.0703250191423388
+    },
+    {
+      "rotorAngle": 243.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9475139817953433
+    },
+    {
+      "rotorAngle": 250.8675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8664419619844468
+    },
+    {
+      "rotorAngle": 258.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9020435122597827
+    },
+    {
+      "rotorAngle": 269.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.084948111982524
+    },
+    {
+      "rotorAngle": 277.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1385796172716809
+    },
+    {
+      "rotorAngle": 284.6175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1344100176943201
+    },
+    {
+      "rotorAngle": 292.1175,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.985422687528734
+    },
+    {
+      "rotorAngle": 303.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8777524198080333
+    },
+    {
+      "rotorAngle": 310.8675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.0024983932749876
+    },
+    {
+      "rotorAngle": 318.3675,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1376831727719448
+    }
+  ],
+  "doorMaxOpen": 1,
+  "doorPhasesSeen": [
+    "closed",
+    "opening",
+    "open",
+    "closing"
+  ]
+}

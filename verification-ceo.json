@@ -1,0 +1,171 @@
+{
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "externalRequests": [],
+  "behaviours": {
+    "read": {
+      "setOk": true,
+      "arrival": {
+        "arrived": true,
+        "pos": {
+          "x": -6,
+          "z": -3.4,
+          "activity": "IDLE"
+        },
+        "waitedMs": 13
+      },
+      "behaviour": "READ",
+      "routine": "Membaca laporan",
+      "pos": {
+        "x": -6,
+        "z": -3.4,
+        "activity": "IDLE"
+      }
+    },
+    "point": {
+      "setOk": true,
+      "arrival": {
+        "arrived": false,
+        "pos": {
+          "x": 0,
+          "z": -3.5,
+          "activity": "IDLE"
+        },
+        "waitedMs": 30879
+      },
+      "behaviour": "POINT",
+      "routine": "Memeriksa papan info",
+      "pos": {
+        "x": 0,
+        "z": -3.5,
+        "activity": "IDLE"
+      }
+    },
+    "phone": {
+      "setOk": true,
+      "arrival": {
+        "arrived": true,
+        "pos": {
+          "x": -4.92,
+          "z": -2.61,
+          "activity": "IDLE"
+        },
+        "waitedMs": 26774
+      },
+      "behaviour": "PHONE",
+      "routine": "Telepon",
+      "pos": {
+        "x": -4.92,
+        "z": -2.61,
+        "activity": "IDLE"
+      }
+    },
+    "coffee": {
+      "setOk": true,
+      "arrival": {
+        "arrived": true,
+        "pos": {
+          "x": -7.04,
+          "z": 2.46,
+          "activity": "IDLE"
+        },
+        "waitedMs": 29883
+      },
+      "behaviour": "COFFEE",
+      "routine": "Istirahat kopi",
+      "pos": {
+        "x": -7.1,
+        "z": 2.6,
+        "activity": "IDLE"
+      }
+    },
+    "greet": {
+      "setOk": true,
+      "arrival": {
+        "arrived": false,
+        "pos": {
+          "x": -1.27,
+          "z": 1.18,
+          "activity": "IDLE"
+        },
+        "waitedMs": 30688
+      },
+      "behaviour": "GREET",
+      "routine": "Menyapa agent",
+      "pos": {
+        "x": -0.79,
+        "z": 1.06,
+        "activity": "IDLE"
+      }
+    },
+    "inspect": {
+      "setOk": true,
+      "behaviour": "INSPECT",
+      "routine": "Inspeksi",
+      "pos": {
+        "x": -1.41,
+        "z": -0.05,
+        "activity": "IDLE"
+      }
+    }
+  },
+  "sleep": {
+    "behaviour": "SLEEP",
+    "routine": "Sleeping",
+    "pos": {
+      "x": -4.75,
+      "z": -2.5,
+      "activity": "IDLE"
+    }
+  },
+  "doorSamples": [
+    {
+      "rotorAngle": 282.21000000000004,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1371609209037474
+    },
+    {
+      "rotorAngle": 289.035,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.0619662991402778
+    },
+    {
+      "rotorAngle": 296.535,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9695141187813687
+    },
+    {
+      "rotorAngle": 304.035,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9187297968114185
+    },
+    {
+      "rotorAngle": 311.535,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.8648788929856996
+    },
+    {
+      "rotorAngle": 319.035,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 0.9878089313148252
+    },
+    {
+      "rotorAngle": 326.535,
+      "doorPhase": "closed",
+      "doorOpen": 0,
+      "fountainJet": 1.1268698267440675
+    }
+  ],
+  "doorMaxOpen": 0,
+  "doorPhasesSeen": [
+    "closed"
+  ],
+  "tap": null
+}

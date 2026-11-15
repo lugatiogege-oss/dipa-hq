@@ -1,0 +1,332 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "dialogs": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "actTags": [
+        "WORKING",
+        "THINKING",
+        "WORKING",
+        "IDLE",
+        "WORKING",
+        "THINKING",
+        "WORKING"
+      ],
+      "oldNamesPresent": false,
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true,
+      "simulationLabel": true,
+      "divisionsRow": "DivisionsBelum diatur",
+      "clockText": "01:41:59 WIB",
+      "phaseText": "NIGHT · WIB"
+    },
+    "activitiesT0": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "WORKING",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "ceoT0": "SLEEP",
+    "typing": {
+      "t0": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "WORKING",
+        "agent-4": "IDLE",
+        "agent-5": "IDLE",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "t2": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "WORKING",
+        "agent-4": "IDLE",
+        "agent-5": "IDLE",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "t4": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "WORKING",
+        "agent-4": "IDLE",
+        "agent-5": "IDLE",
+        "agent-6": "WORKING",
+        "agent-7": "THINKING"
+      }
+    },
+    "walkCheck": {
+      "before": {
+        "x": -1,
+        "z": 1.15,
+        "activity": "IDLE"
+      },
+      "after": {
+        "x": -2.22,
+        "z": -0.19,
+        "activity": "WALKING"
+      },
+      "moved": 1.8121810064118873
+    },
+    "thinking": {
+      "t0": {
+        "agent-1": "THINKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "t2": {
+        "agent-1": "THINKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      }
+    },
+    "activityChange": {
+      "before": {
+        "agent-1": "WORKING",
+        "agent-2": "WORKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "WORKING",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "after": {
+        "agent-1": "WORKING",
+        "agent-2": "THINKING",
+        "agent-3": "WORKING",
+        "agent-4": "WORKING",
+        "agent-5": "IDLE",
+        "agent-6": "WORKING",
+        "agent-7": "WORKING"
+      },
+      "changed": true
+    },
+    "ceo": {
+      "point": {
+        "arrived": true,
+        "waitedMs": 24211,
+        "pos": {
+          "x": -1,
+          "z": -3.48,
+          "activity": "IDLE"
+        },
+        "behaviour": "POINT",
+        "routine": "Memeriksa papan info"
+      },
+      "coffee": {
+        "arrived": true,
+        "waitedMs": 40300,
+        "pos": {
+          "x": -6.69,
+          "z": 2.23,
+          "activity": "IDLE"
+        },
+        "behaviour": "COFFEE",
+        "routine": "Istirahat kopi"
+      },
+      "greet": {
+        "arrived": true,
+        "waitedMs": 36276,
+        "pos": {
+          "x": 0.23,
+          "z": 0.81,
+          "activity": "IDLE"
+        },
+        "behaviour": "GREET",
+        "routine": "Menyapa agent"
+      },
+      "sleep": {
+        "behaviour": "SLEEP",
+        "routine": "Sleeping",
+        "pos": {
+          "x": -5.98,
+          "z": -3.39,
+          "activity": "IDLE"
+        }
+      }
+    },
+    "rotor": {
+      "t0": {
+        "rotorAngle": 430.0575,
+        "doorPhase": "closing",
+        "doorOpen": 0.9,
+        "fountainJet": 1.0301807665777463
+      },
+      "t2": {
+        "rotorAngle": 434.3775,
+        "doorPhase": "closing",
+        "doorOpen": 0.21,
+        "fountainJet": 0.8861587477571253
+      },
+      "t4": {
+        "rotorAngle": 438.3975,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 0.8604891778349401
+      },
+      "moved": true
+    },
+    "fountain": {
+      "t0": {
+        "rotorAngle": 475.75499999999994,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.079699542869115
+      },
+      "t2": {
+        "rotorAngle": 480.11249999999995,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.1198343067676102
+      },
+      "t4": {
+        "rotorAngle": 487.8375,
+        "doorPhase": "closed",
+        "doorOpen": 0,
+        "fountainJet": 1.1398322171240758
+      },
+      "changed": true
+    },
+    "leftPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "rightPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "leftCloseKeepsRightOpen": true,
+    "characterTap": {
+      "proj": {
+        "world": {
+          "x": -7,
+          "z": -3.65,
+          "activity": "THINKING"
+        },
+        "screen": {
+          "x": 589.8,
+          "y": 423.6,
+          "behind": false
+        }
+      },
+      "toast": {
+        "display": "block",
+        "text": "Agent 1 · Research Lab · THINKING · SIMULATION · UNKNOWN · Belum terhubung ke platform"
+      }
+    },
+    "clockTicks": {
+      "clockA": "01:51:51 WIB",
+      "clockB": "01:51:53 WIB",
+      "changed": true
+    },
+    "settingsMenuVisible": true,
+    "qualityToast": "Kualitas grafis: PERFORMANCE",
+    "upgradeToast": "Fitur Upgrade belum tersedia — direncanakan Fase 5",
+    "reportToast": "Fitur Report belum tersedia — direncanakan Fase 5",
+    "fpsDesktop": {
+      "current": 0.5,
+      "avg": 0.4,
+      "min": 0.2,
+      "samples": 30
+    },
+    "perfDesktop": {
+      "calls": 1424,
+      "triangles": 76750,
+      "geometries": 720
+    },
+    "finalActivities": {
+      "agent-1": "THINKING",
+      "agent-2": "WORKING",
+      "agent-3": "INTERACTING",
+      "agent-4": "WORKING",
+      "agent-5": "WALKING",
+      "agent-6": "WORKING",
+      "agent-7": "WORKING"
+    }
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "externalRequests": [],
+    "identity": {
+      "labels": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 3",
+        "Agent 4",
+        "Agent 5",
+        "Agent 6",
+        "Agent 7"
+      ],
+      "roles": [
+        "Unassigned · Research Lab",
+        "Unassigned · Mission Control Center",
+        "Unassigned · Main Operations Floor",
+        "Unassigned · Development Lab",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room",
+        "Unassigned · Collaboration Room"
+      ],
+      "platformLabelsPresent": false,
+      "researchLabRow": true,
+      "collaborationRoomRow": true
+    },
+    "activities": {
+      "agent-1": "WORKING",
+      "agent-2": "THINKING",
+      "agent-3": "WORKING",
+      "agent-4": "IDLE",
+      "agent-5": "IDLE",
+      "agent-6": "THINKING",
+      "agent-7": "WORKING"
+    },
+    "fpsMobile": {
+      "current": 1.7,
+      "avg": 1.9,
+      "min": 1.3,
+      "samples": 11
+    },
+    "perfMobile": {
+      "calls": 1011,
+      "triangles": 50976,
+      "geometries": 496
+    },
+    "leftCloseWorks": true,
+    "leftReopenWorks": true
+  }
+}

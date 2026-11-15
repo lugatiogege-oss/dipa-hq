@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#061326">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23061326'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='bold' fill='%2364e2ff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<title>DIPA HQ — DIPA NEXUS · AI Operations Center</title>
+<style>
+:root{--bg:#061326;--glass:rgba(7,22,40,.84);--line:rgba(105,213,255,.25);--cyan:#64e2ff;--violet:#a58cff;--txt:#eaf7ff;--muted:#9bb3c8;--gold:#f4d28f}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+#scene{position:fixed;inset:0}canvas{display:block;width:100%;height:100%;touch-action:none}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:14px;box-shadow:0 10px 32px #0005}
+/* ---------- loader / error ---------- */
+#loader{position:fixed;inset:0;z-index:50;background:#061326;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+#loader .spin{width:42px;height:42px;border-radius:50%;border:3px solid #1c3a55;border-top-color:var(--cyan);animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#loader p{font-size:12px;color:var(--muted);letter-spacing:2px}
+#loadError{position:fixed;z-index:51;left:50%;top:50%;transform:translate(-50%,-50%);display:none;max-width:88vw;padding:20px;text-align:center}
+#loadError h3{margin:0 0 8px;color:#ffb4b4;font-size:15px}
+#loadError .err-msg{font-size:12px;color:var(--muted);line-height:1.6}
+#loadError button{margin-top:14px;border:1px solid var(--line);border-radius:9px;background:#0c2a44;color:var(--txt);padding:9px 16px;cursor:pointer}
+/* ---------- top bar ---------- */
+.top{position:fixed;z-index:4;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+.top>*{pointer-events:auto}
+.ceo-card{display:flex;gap:11px;align-items:center;padding:9px 13px}
+.ceo-card .avatar{width:46px;height:46px;border-radius:12px;overflow:hidden;border:1px solid #70dfff66;flex:none;background:linear-gradient(140deg,#2a1b4d,#123a56)}
+.ceo-card .avatar svg{display:block;width:100%;height:100%}
+.ceo-card b{font-size:13px;letter-spacing:1px;display:block}
+.ceo-card .rank{color:var(--violet);font-size:9px;letter-spacing:1.6px}
+.ceo-card .xp{margin-top:5px;width:150px;height:5px;border-radius:4px;background:#12283e;overflow:hidden}
+.ceo-card .xp i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.ceo-card small{font-size:8px;color:var(--muted)}
+.clock{text-align:right;padding:9px 13px;font-size:10px;color:var(--muted)}
+.clock strong{display:block;color:var(--cyan);font-size:16px;letter-spacing:1px}
+.clock .gear{margin-left:8px;border:1px solid var(--line);background:#0c2a44;color:var(--txt);border-radius:10px;width:34px;height:34px;font-size:16px;cursor:pointer;vertical-align:top}
+/* ---------- left nav rail (concept) ---------- */
+#navRail{position:fixed;z-index:4;left:14px;top:96px;display:flex;flex-direction:column;gap:4px;padding:8px;width:150px}
+#navRail.rail-hidden{display:none}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--txt);font-size:12px;cursor:pointer;text-align:left}
+.nav-item .ico{font-size:15px;width:20px;text-align:center}
+.nav-item:hover{background:#0c2a44}
+.nav-item.active{background:linear-gradient(90deg,#0e4a6e,#1b2a52);border-color:var(--line)}
+/* ---------- side panels ---------- */
+.panel{position:fixed;z-index:4;top:96px;bottom:86px;width:262px;padding:14px;background:var(--glass);border:1px solid var(--line);border-radius:17px;backdrop-filter:blur(18px);box-shadow:0 18px 50px #0006;overflow:auto}
+.left{left:176px}.right{right:14px}
+.panelHead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.eyebrow{font-size:9px;letter-spacing:2px;color:var(--cyan);font-weight:800}.panel h2{font-size:16px;margin:6px 0 10px}
+.division{display:flex;justify-content:space-between;align-items:center;margin:12px 0 4px;font-size:11px;font-weight:800;letter-spacing:.7px}
+.division span:last-child{font-size:8px;color:var(--muted);font-weight:500}
+.dir-note{font-size:9px;color:var(--muted);line-height:1.5;margin:2px 0 6px;font-style:italic}
+.worker{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #8adfff16;cursor:pointer}
+.worker:hover{background:#0c2a4433}
+.avatar{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(140deg,#145579,#47347c);border:1px solid #70dfff66;font-size:11px;flex:none}
+.avatar.cue{background:linear-gradient(140deg,#38265d,#192346);border-color:#8d75db}
+.worker b{display:block;font-size:11px}.worker small{font-size:9px;color:var(--muted)}
+.tag{margin-left:auto;border:1px solid #e7bd6955;color:var(--gold);padding:3px 6px;border-radius:20px;font-size:8px;white-space:nowrap}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11px;margin:9px 0}.muted{color:var(--muted)}.section{border-top:1px solid var(--line);margin-top:12px;padding-top:11px}
+.btn{border:1px solid var(--line);border-radius:9px;background:#0c2a44;color:var(--txt);padding:8px 10px;font-size:10px;cursor:pointer}.btn:active{transform:scale(.97)}.btns{display:flex;gap:6px;flex-wrap:wrap}
+.btn.active{border-color:var(--cyan);color:var(--cyan)}
+.close,.open{border:1px solid var(--line);border-radius:9px;background:#0c2a44;color:var(--txt);padding:7px 9px;font-size:10px;cursor:pointer}
+.panel.hidden{display:none}.open{display:none;position:fixed;z-index:5;top:50%;transform:translateY(-50%);backdrop-filter:blur(14px)}.open.show{display:block}.open.l{left:7px}.open.r{right:7px}
+/* ---------- bottom bar ---------- */
+.brand-bl{position:fixed;z-index:4;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;padding:9px 13px}
+.brand-bl .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#3bdcf5,#8c75ff);display:grid;place-items:center;color:#06101e;font-weight:900;font-size:17px}
+.brand-bl b{font-size:13px;letter-spacing:2px;display:block}.brand-bl small{font-size:8px;color:var(--muted);letter-spacing:1.6px}
+.bottom-btns{position:fixed;z-index:4;right:14px;bottom:14px;display:flex;gap:8px}
+.bbtn{display:flex;flex-direction:column;align-items:center;gap:3px;width:64px;padding:9px 4px 7px;border:1px solid var(--line);border-radius:13px;background:var(--glass);backdrop-filter:blur(14px);color:var(--txt);font-size:9px;cursor:pointer}
+.bbtn .ico{font-size:17px}
+.bbtn:active{transform:scale(.96)}
+/* ---------- popovers ---------- */
+.popover{position:fixed;z-index:6;display:none;min-width:190px;padding:10px;background:var(--glass);border:1px solid var(--line);border-radius:13px;backdrop-filter:blur(16px);box-shadow:0 14px 40px #0007}
+.popover.show{display:block}
+.popover .pop-title{font-size:9px;letter-spacing:2px;color:var(--cyan);font-weight:800;margin:2px 4px 8px}
+.popover button{display:block;width:100%;text-align:left;border:1px solid transparent;background:transparent;color:var(--txt);padding:8px 10px;border-radius:8px;font-size:11px;cursor:pointer}
+.popover button:hover{background:#0c2a44}
+.popover button.active{border-color:var(--cyan);color:var(--cyan)}
+.popover .pop-note{font-size:9px;color:var(--muted);line-height:1.5;padding:6px 10px 2px}
+#camMenu{right:14px;bottom:86px}
+#settingsMenu{right:14px;top:64px}
+.hint{position:fixed;z-index:3;bottom:16px;left:50%;transform:translateX(-50%);border:1px solid var(--line);background:#071a2bd9;border-radius:20px;padding:7px 11px;color:#c8dceb;font-size:9px;white-space:nowrap;pointer-events:none}
+#toast{position:fixed;z-index:7;left:50%;bottom:64px;transform:translateX(-50%);background:#071a2bf2;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:11px;display:none;max-width:85vw;text-align:center}
+/* ---------- responsive ---------- */
+@media(max-width:900px){.left{left:14px}.panel{width:236px}}
+@media(max-width:700px){
+ .top{top:8px;left:8px;right:8px}
+ .ceo-card{padding:7px 9px}.ceo-card .avatar{width:36px;height:36px}.ceo-card b{font-size:11px}.ceo-card .xp{width:100px}
+ .clock{padding:7px 9px;font-size:8px}.clock strong{font-size:12px}.clock .gear{width:28px;height:28px;font-size:13px}
+ #navRail{display:none;top:64px;left:8px;background:var(--glass);border:1px solid var(--line);border-radius:13px;backdrop-filter:blur(16px)}
+ #navRail.rail-hidden{display:none}
+ #navRail:not(.rail-hidden){display:flex}
+ .panel{top:auto;bottom:84px;width:calc(50% - 12px);max-height:32vh;padding:9px;border-radius:13px}
+ .left{left:8px}.right{right:8px}
+ .panel h2{font-size:12px;margin:4px 0 7px}.eyebrow{font-size:7px}.worker{padding:5px 0;gap:6px}.avatar{width:22px;height:22px;font-size:9px}.worker b{font-size:9px}.worker small{font-size:7px}.tag{font-size:7px;padding:2px 4px}.row{font-size:8px;margin:6px 0}.section{margin-top:8px;padding-top:7px}.btn{font-size:8px;padding:6px 7px}
+ .brand-bl{left:8px;bottom:8px;padding:7px 9px}.brand-bl .logo{width:26px;height:26px;font-size:14px}.brand-bl b{font-size:10px}
+ .bottom-btns{right:8px;bottom:8px;gap:6px}.bbtn{width:52px;font-size:8px;padding:7px 2px 5px}.bbtn .ico{font-size:14px}
+ .hint{display:none}
+ #camMenu{bottom:64px;right:8px}
+}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+
+<div id="loader"><div class="spin"></div><p>MEMUAT DIPA HQ…</p></div>
+<div id="loadError" class="glass"><h3>3D tidak dapat dimuat</h3><div class="err-msg"></div><button onclick="location.reload()">Muat ulang</button></div>
+<noscript><div style="position:fixed;inset:0;background:#061326;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99">DIPA HQ membutuhkan JavaScript.</div></noscript>
+
+<header class="top">
+  <div class="ceo-card glass">
+    <div class="avatar" title="DFNX PRIME — avatar">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect width="48" height="48" fill="#2a1b4d"/>
+        <circle cx="24" cy="26" r="13" fill="#d7a47d"/>
+        <path d="M11 24 Q11 8 24 8 Q37 8 37 24 L35 20 Q35 12 24 12 Q13 12 13 20 Z" fill="#1b2436"/>
+        <rect x="12" y="22" width="11" height="7" rx="3.5" fill="#101a27"/>
+        <rect x="25" y="22" width="11" height="7" rx="3.5" fill="#101a27"/>
+        <rect x="22" y="24" width="4" height="2" fill="#101a27"/>
+        <path d="M19 35 Q24 38 29 35" stroke="#8a5a3b" stroke-width="1.6" fill="none"/>
+      </svg>
+    </div>
+    <div>
+      <b>👑 DFNX PRIME</b>
+      <span class="rank">SUPREME DIRECTOR</span>
+      <div class="xp"><i></i></div>
+      <small>Lv. 1 &nbsp;·&nbsp; 0 / 1000</small>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:8px">
+    <div class="clock glass"><span id="phase">NIGHT · WIB</span><strong id="time">--:--:-- WIB</strong><span id="date"></span></div>
+    <button class="gear glass" id="gearBtn" title="Pengaturan" aria-label="Pengaturan">⚙</button>
+  </div>
+</header>
+
+<nav id="navRail" class="glass" aria-label="Navigasi utama">
+  <button class="nav-item active" data-nav="overview"><span class="ico">🏠</span>Overview</button>
+  <button class="nav-item" data-nav="agents"><span class="ico">👥</span>Agents</button>
+  <button class="nav-item" data-nav="buildings"><span class="ico">🏢</span>Buildings</button>
+  <button class="nav-item" data-nav="research"><span class="ico">🔬</span>Research</button>
+  <button class="nav-item" data-nav="missions"><span class="ico">🎯</span>Missions</button>
+  <button class="nav-item" data-nav="analytics"><span class="ico">📊</span>Analytics</button>
+  <button class="nav-item" data-nav="settings"><span class="ico">⚙️</span>Settings</button>
+</nav>
+
+<aside class="panel left" id="leftPanel">
+  <div class="panelHead"><div><div class="eyebrow">WORKFORCE</div><h2>Agent Directory</h2></div><button class="close" data-close="leftPanel">Tutup ✕</button></div>
+  <div id="workers"></div>
+  <div class="section"><div class="row"><span class="muted">Platform connection</span><span class="tag">NOT CONNECTED</span></div><div class="row"><span class="muted">Live agent data</span><b>Belum tersedia</b></div></div>
+</aside>
+
+<aside class="panel right" id="rightPanel">
+  <div class="panelHead"><div><div class="eyebrow">DIPA NEXUS HQ</div><h2>Operations Center</h2></div><button class="close" data-close="rightPanel">Tutup ✕</button></div>
+  <div class="row"><span class="muted">Mode</span><span class="tag">VISUAL PREVIEW</span></div>
+  <div class="row"><span class="muted">Activity</span><span class="tag">SIMULATION</span></div>
+  <div class="row"><span class="muted">Building</span><b>Two floors</b></div>
+  <div class="row"><span class="muted">Divisions</span><b>Belum diatur</b></div>
+  <div class="section"><div class="eyebrow">EXECUTIVE</div><div class="row"><span>DFNX PRIME</span><span class="muted">SUPREME DIRECTOR</span></div><div class="row"><span class="muted">Routine</span><b id="routine">Office patrol</b></div><div class="row"><span class="muted">Local time</span><b id="exec-time">--:-- WIB</b></div></div>
+  <div class="section"><div class="eyebrow">FLOOR 01 · OPERATIONS</div>
+    <div class="row"><span>Research Lab</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Mission Control</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Main Operations Floor</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Collaboration Room</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Development Lab</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Server Room</span><span class="muted">CORE</span></div>
+    <div class="row"><span>Security Monitoring</span><span class="muted">CORE</span></div>
+    <div class="row"><span>Lounge &amp; Pantry</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Entrance &amp; Reception</span><span class="muted">HQ</span></div>
+  </div>
+  <div class="section"><div class="eyebrow">FLOOR 02 · EXECUTIVE</div>
+    <div class="row"><span>Executive Office</span><b>DFNX PRIME</b></div>
+    <div class="row"><span>Board Room</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Executive Lounge</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Management Deck</span><span class="muted">HQ</span></div>
+    <div class="row"><span>Glass Viewing Area</span><span class="muted">HQ</span></div>
+  </div>
+  <div class="section"><div class="eyebrow">CAMERA</div><div class="btns"><button class="btn" id="reset">Reset view</button><button class="btn" id="zoomIn">Zoom +</button><button class="btn" id="zoomOut">Zoom −</button></div></div>
+  <div class="section"><div class="row"><span class="muted">Owner Mode</span><span class="tag">NOT IMPLEMENTED</span></div><small class="muted">Preview ini belum terhubung ke backend atau autentikasi. Owner Mode membutuhkan backend — bukan password di browser.</small></div>
+</aside>
+<button class="open l" id="openLeft">☰ Agents</button><button class="open r" id="openRight">☰ Info</button>
+
+<div class="brand-bl glass"><div class="logo">D</div><div><b>DIPA NEXUS</b><small>AI OPERATIONS CENTER</small></div></div>
+
+<div class="bottom-btns">
+  <button class="bbtn" id="camBtn"><span class="ico">📷</span>Camera</button>
+  <button class="bbtn" id="upgradeBtn"><span class="ico">⬆</span>Upgrade</button>
+  <button class="bbtn" id="reportBtn"><span class="ico">📊</span>Report</button>
+  <button class="bbtn" id="menuBtn"><span class="ico">▦</span>Menu</button>
+</div>
+
+<div class="popover" id="camMenu">
+  <div class="pop-title">CAMERA</div>
+  <button data-view="default">Reset view</button>
+  <button data-view="zoomIn">Zoom +</button>
+  <button data-view="zoomOut">Zoom −</button>
+  <button data-view="floor1">Focus: Floor 1 — Operations</button>
+  <button data-view="floor2">Focus: Floor 2 — Executive</button>
+  <button data-view="ceo">Focus: CEO Office</button>
+  <button data-view="entrance">Focus: Entrance</button>
+  <button data-view="roof">Focus: Roof &amp; Helipad</button>
+</div>
+
+<div class="popover" id="settingsMenu">
+  <div class="pop-title">SETTINGS · QUALITY</div>
+  <button data-quality="PERFORMANCE">Performance — tercepat</button>
+  <button data-quality="BALANCED">Balanced — seimbang</button>
+  <button data-quality="ULTRA">Ultra — kualitas penuh</button>
+  <div class="pop-note">Perubahan antialias diterapkan saat halaman dimuat ulang. Owner Mode: NOT IMPLEMENTED (butuh backend).</div>
+</div>
+
+<div class="hint">Geser untuk memutar · Cubit untuk zoom · Ketuk karakter untuk detail</div>
+<div id="toast"></div>
+
+<script>
+window.__DIPA_READY = false;
+setTimeout(function () {
+  if (!window.__DIPA_READY) {
+    var l = document.getElementById('loader');
+    var e = document.getElementById('loadError');
+    if (l) l.style.display = 'none';
+    if (e) {
+      e.style.display = 'block';
+      e.querySelector('.err-msg').textContent = 'Modul 3D tidak dapat dimuat dalam 12 detik. Periksa file lokal /vendor/three.module.js, lalu muat ulang halaman.';
+    }
+  }
+}, 12000);
+</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

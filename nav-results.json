@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "research": {
+      "clicked": true,
+      "active": true
+    },
+    "missions": {
+      "clicked": true,
+      "active": true
+    },
+    "analytics": {
+      "clicked": true,
+      "active": true
+    }
+  }
+}

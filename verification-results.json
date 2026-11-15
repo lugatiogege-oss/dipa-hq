@@ -1,0 +1,164 @@
+{
+  "desktop": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "dialogs": [],
+    "externalRequests": [],
+    "initialState": {
+      "ready": true,
+      "loaderHidden": true,
+      "loadErrorVisible": false,
+      "canvas": {
+        "w": 1440,
+        "h": 900
+      },
+      "pixels": {
+        "uniqueSampledColors": 1,
+        "sample": [
+          "0,0,0"
+        ]
+      },
+      "clockText": "00:16:43 WIB",
+      "phaseText": "NIGHT · WIB",
+      "workersInPanel": 7,
+      "workerLabels": [
+        "Dipa.Ai · Research",
+        "Dipa.Ai · Mission Control",
+        "Dipa.Ai · Operations",
+        "Dipa.Ai · Development",
+        "Difa.ai",
+        "Evelyn.ai",
+        "Rafo.ai"
+      ],
+      "forbiddenWords": [
+        "gem"
+      ],
+      "roomRowsRight": 21,
+      "navItems": 7,
+      "webgl": true
+    },
+    "leftPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "rightPanel": {
+      "closeWorks": true,
+      "reopenWorks": true
+    },
+    "leftCloseKeepsRightOpen": true,
+    "characterTaps": [
+      {
+        "at": [
+          720,
+          480
+        ],
+        "toast": {
+          "display": "none",
+          "text": ""
+        }
+      },
+      {
+        "at": [
+          620,
+          520
+        ],
+        "toast": {
+          "display": "none",
+          "text": ""
+        }
+      },
+      {
+        "at": [
+          820,
+          500
+        ],
+        "toast": {
+          "display": "block",
+          "text": "Dipa.Ai · Mission Control · Mission Control Center · UNKNOWN · Belum terhubung ke platform"
+        }
+      }
+    ],
+    "settingsMenuVisible": true,
+    "qualityToast": "Kualitas grafis: PERFORMANCE",
+    "upgradeToast": "Fitur Upgrade belum tersedia — direncanakan Fase 5",
+    "reportToast": "Fitur Report belum tersedia — direncanakan Fase 5",
+    "finalState": {
+      "ready": true,
+      "loaderHidden": true,
+      "loadErrorVisible": false,
+      "canvas": {
+        "w": 1440,
+        "h": 900
+      },
+      "pixels": {
+        "uniqueSampledColors": 1,
+        "sample": [
+          "0,0,0"
+        ]
+      },
+      "clockText": "00:21:15 WIB",
+      "phaseText": "NIGHT · WIB",
+      "workersInPanel": 7,
+      "workerLabels": [
+        "Dipa.Ai · Research",
+        "Dipa.Ai · Mission Control",
+        "Dipa.Ai · Operations",
+        "Dipa.Ai · Development",
+        "Difa.ai",
+        "Evelyn.ai",
+        "Rafo.ai"
+      ],
+      "forbiddenWords": [
+        "gem"
+      ],
+      "roomRowsRight": 21,
+      "navItems": 7,
+      "webgl": true
+    }
+  },
+  "mobile": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "initialState": {
+      "ready": true,
+      "loaderHidden": true,
+      "loadErrorVisible": false,
+      "canvas": {
+        "w": 390,
+        "h": 844
+      },
+      "pixels": {
+        "uniqueSampledColors": 1,
+        "sample": [
+          "0,0,0"
+        ]
+      },
+      "clockText": "00:21:31 WIB",
+      "phaseText": "NIGHT · WIB",
+      "workersInPanel": 7,
+      "workerLabels": [
+        "Dipa.Ai · Research",
+        "Dipa.Ai · Mission Control",
+        "Dipa.Ai · Operations",
+        "Dipa.Ai · Development",
+        "Difa.ai",
+        "Evelyn.ai",
+        "Rafo.ai"
+      ],
+      "forbiddenWords": [
+        "gem"
+      ],
+      "roomRowsRight": 21,
+      "navItems": 7,
+      "webgl": true
+    },
+    "leftCloseWorks": true,
+    "leftReopenWorks": true,
+    "tapToast": {
+      "display": "none",
+      "text": ""
+    }
+  }
+}
